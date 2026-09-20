@@ -1,0 +1,5 @@
+name = "CollatzTeaming"
+defaultTargets = ["CollatzTeaming"]
+
+[[lean_lib]]
+name = "CollatzTeaming"
