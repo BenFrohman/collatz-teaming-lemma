@@ -2,8 +2,8 @@
 Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved.
 Author: Benjamin Stanley Frohman
 
-The remaining lemma of The 3n+1 Machine is isolated here.
-It is definitionally the Collatz conjecture. It is not proved.
+The remaining lemma is definitionally the Collatz conjecture.
+It is not proved. There is no `sorry` inhabitant.
 -/
 
 import CollatzTeaming.Basic
@@ -17,8 +17,7 @@ def RemainingLemma : Prop := CollatzConjecture
 theorem remaining_lemma_iff_collatz : RemainingLemma ↔ CollatzConjecture := by
   rfl
 
-/-- Kernel of the open problem. Do not close this with an axiom. -/
-theorem remaining_lemma : RemainingLemma := by
-  sorry
+/-- Status lock: do not close this with an axiom or a `sorry`. -/
+def remainingLemmaStatus : String := "open"
 
 end CollatzTeaming
