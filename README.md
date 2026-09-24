@@ -1,6 +1,10 @@
 # Collatz teaming lemma — Lean skeleton
 
-**Author:** Benjamin Stanley Frohman (`@Investor0x`, GitHub `BenFrohman`)
+**Author:** Benjamin Stanley Frohman (`@Investor0x`, GitHub `BenFrohman`)  
+**Email:** frohmanbenjamin@gmail.com  
+**ORCID:** [0009-0006-7068-3718](https://orcid.org/0009-0006-7068-3718)  
+**Copyright:** © 2026 Benjamin Stanley Frohman  
+**License:** [CC BY 4.0](LICENSE)
 
 **Status: the remaining lemma is not certified.**
 
@@ -27,20 +31,19 @@ theorem remaining_lemma : RemainingLemma := by
 
 Lemma 1 (`Δ_cyc=∅`), Lemma 2 (`Δ_div=∅`), and Lemma L stay open.
 A failed Lyapunov (`V=n`, `V=log n` at 27→41) is not Lemma 2 and is not `¬`Lemma 2.
+Kind A (no m-cycle for m ≤ 91) is literature (Steiner / Simons / Hercher). Kind B (every m) is Lemma 1 and is open.
 
 ## Ledger
 
-- [docs/LEDGER.md](docs/LEDGER.md)
-- [docs/PREDICATES_D_R.md](docs/PREDICATES_D_R.md)
-- [docs/LEMMA2_DIVERGENCE.md](docs/LEMMA2_DIVERGENCE.md)
-- [docs/FAILED_V.md](docs/FAILED_V.md)
-- [docs/SWEAT_AND_LITERATURE.md](docs/SWEAT_AND_LITERATURE.md) — full grind: Steiner, Simons, Hercher, Eliahou, Barina, CF windows, 27-orbit, searches
-- [docs/SCAFFOLDING_AUDIT.md](docs/SCAFFOLDING_AUDIT.md)
-- [docs/SIMONS_2CYCLE.md](docs/SIMONS_2CYCLE.md)
+See `docs/`. Entry points: `LEDGER.md`, `LEMMA1_CITED.md`, `LMN_SPLIT.md`, `DO_NOT_MISREAD.md`, `SWEAT_AND_LITERATURE.md`.
+
+## Contributing
+
+Read [CONTRIBUTING.md](CONTRIBUTING.md). PRs need @BenFrohman approval. See [COPYRIGHT](COPYRIGHT) and [LICENSE](LICENSE).
 
 ## Circularity note
 
-Any argument that assumes every infinite team already falls into `{1,4,2}` in order to prove the remaining lemma is circular: it assumes the conclusion. The realized negative log-mean on the orbit of 27 is in that class.
+Any argument that assumes every infinite team already falls into `{1,4,2}` in order to prove the remaining lemma is circular. The realized negative log-mean on the orbit of 27 is in that class.
 
 ## Zenodo
 

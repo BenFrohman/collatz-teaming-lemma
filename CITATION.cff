@@ -1,0 +1,13 @@
+cff-version: 1.2.0
+title: Collatz teaming lemma — Lean skeleton and ledger
+message: Cite this ledger as a status note, not as a proof of Collatz.
+type: software
+authors:
+  - family-names: Frohman
+    given-names: Benjamin Stanley
+    email: frohmanbenjamin@gmail.com
+    orcid: https://orcid.org/0009-0006-7068-3718
+repository-code: https://github.com/BenFrohman/collatz-teaming-lemma
+license: CC-BY-4.0
+version: "2026-09-24"
+date-released: "2026-09-24"
