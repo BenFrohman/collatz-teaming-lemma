@@ -7,23 +7,26 @@ GitHub: BenFrohman
 X: @Investor0x
 Copyright (c) 2026 Benjamin Stanley Frohman. License: CC BY 4.0. See LICENSE and COPYRIGHT.
 
-A 92-cycle is a solution of Hercher Def. 6 with m = 92:
+Locked 24 September 2026.
 
-    C^{k_i + \ell_i}(n_i) = n_{i+1},    i = 1, \ldots, 92,
-    n_{93} := n_1,
+A 92-cycle is a solution of
 
-each n_i a local minimum (odd), k_i consecutive o-steps, \ell_i consecutive e-steps after them.
+    C^{k_i + ℓ_i}(n_i) = n_{i+1},    i = 1, …, 92,
+    n_{93} := n_1 > 1,
 
-If the 92 blocks do not close, it is not a cycle.
+with each n_i an odd local minimum.
 
-No solution (n_i, k_i, \ell_i) is written here. None is published.
+If n_{93} ≠ n_1, it is not a cycle. No such 92-tuple is written. None is published.
 
-Cor. 29 bounds odd-count K = \sum k_i, not block-count m. Under Barina, any nontrivial cycle — including a 92-block one — would still need
+Cor. 29 bounds odd-count K = ∑ k_i, not block-count m:
 
-    K > 1.375 \times 10^{11}.
+    K > 1.375 × 10^{11}.
 
-If m \le 98, Cor. 24 further requires K > 7.76 \times 10^{19}.
+If m ≤ 98, Cor. 24 further requires K > 7.76 × 10^{19}.
+SdW upper at m = 92: K < 3.430 × 10^{20}.
 
 Those are constraints on an unwritten loop. They are not the loop.
 
 Not Lemma 1. Not a Collatz counterexample.
+
+See also docs/M92_DIOPHANTINE.md.
