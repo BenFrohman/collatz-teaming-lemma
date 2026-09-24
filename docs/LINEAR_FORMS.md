@@ -7,3 +7,5 @@ The a,b ≤ 30 grind is the wrong grain.
 It does not empty Δ_cyc(T). For each fixed block-count m, the Baker / Laurent–Mignotte–Nesterenko sandwich plus a verified range for small starts kills that m. Hercher pushes m to 91. m ≥ 92 remains the Lemma 1 gap.
 
 The sign in 3n−1 changes the unit equation (2^L − 3^K versus a c = −1 form). Extra C_- cycles already exist, so the slogan “logs force a unique loop” is false on that map.
+
+Lemma 1 still needs every m, or a different argument that does not stop at a finite m. Linear forms in logs are why the finite-m proofs work. They are not a replacement for the remaining m.
