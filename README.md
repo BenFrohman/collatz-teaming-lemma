@@ -13,7 +13,8 @@ That sentence is the Collatz conjecture on the positive integers. Lean records t
 ## What is certified
 
 - The classical map `T`.
-- The trivial cycle `1 → 4 → 2 → 1`.
+- The trivial cycle `C0 = (1 → 4 → 2 → 1)`, bound max = 4 on that orbit only.
+- Predicates D (dichotomy) and R (reduction to the two Δs).
 - The definition of inverse-residue teams.
 - `RemainingLemma ↔ CollatzConjecture` by definition.
 
@@ -24,14 +25,25 @@ theorem remaining_lemma : RemainingLemma := by
   sorry
 ```
 
-A `sorry` here is required. Closing it would be a proof of Collatz. No such proof is supplied. Visual orbits on the site, Terras density, Tao almost-boundedness, and the machine check below `2^68` do not discharge this theorem.
+Lemma 1 (`Δ_cyc=∅`), Lemma 2 (`Δ_div=∅`), and Lemma L stay open.
+A failed Lyapunov (`V=n`, `V=log n` at 27→41) is not Lemma 2 and is not `¬`Lemma 2.
+
+## Ledger
+
+- [docs/LEDGER.md](docs/LEDGER.md)
+- [docs/PREDICATES_D_R.md](docs/PREDICATES_D_R.md)
+- [docs/LEMMA2_DIVERGENCE.md](docs/LEMMA2_DIVERGENCE.md)
+- [docs/FAILED_V.md](docs/FAILED_V.md)
+- [docs/SWEAT_AND_LITERATURE.md](docs/SWEAT_AND_LITERATURE.md) — full grind: Steiner, Simons, Hercher, Eliahou, Barina, CF windows, 27-orbit, searches
+- [docs/SCAFFOLDING_AUDIT.md](docs/SCAFFOLDING_AUDIT.md)
+- [docs/SIMONS_2CYCLE.md](docs/SIMONS_2CYCLE.md)
 
 ## Circularity note
 
-Any argument that assumes every infinite team already falls into `{1,4,2}` in order to prove the remaining lemma is circular: it assumes the conclusion.
+Any argument that assumes every infinite team already falls into `{1,4,2}` in order to prove the remaining lemma is circular: it assumes the conclusion. The realized negative log-mean on the orbit of 27 is in that class.
 
 ## Zenodo
 
-No solution preprint is deposited. A paper titled as a proof of Collatz would be false on the present kernel. If a note is archived later, it must state that the remaining lemma is open.
+No solution preprint is deposited. A paper titled as a proof of Collatz would be false on the present kernel.
 
-Companion presentation: `BenFrohman/the-3n-plus-1-machine`.
+Companions: [the-3n-plus-1-machine](https://github.com/BenFrohman/the-3n-plus-1-machine), [3n-plus-c-cycle-census](https://github.com/BenFrohman/3n-plus-c-cycle-census).
