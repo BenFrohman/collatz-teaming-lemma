@@ -3,86 +3,53 @@ Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved.
 Author: Benjamin Stanley Frohman
 License: Apache-2.0
 
-Corrected binomial tail. The generating bound is a theorem.
-This does not inhabit RemainingLemma, and it does not by itself
-inhabit DensityZero NeverDrops: the bad-class covering is separate.
+Pascal tail, written so Lean 4.34 does not need rfl on a recursive equation.
+Not the covering claim.
 -/
 
 namespace CollatzTeaming
 
-def popcount : Nat → Nat
-  | 0 => 0
-  | n + 1 => (n + 1) % 2 + popcount ((n + 1) / 2)
-termination_by n => n
-decreasing_by
-  simp_wf
-  omega
+def tail : Nat → Nat → Nat
+  | 0, 0 => 1
+  | 0, _ + 1 => 0
+  | n + 1, 0 => 2 ^ (n + 1)
+  | n + 1, s + 1 => tail n s + tail n (s + 1)
 
-theorem popcount_div (n : Nat) : popcount n = n % 2 + popcount (n / 2) := by
-  cases n with
-  | zero => rfl
-  | succ n => rfl
+theorem tail_zero (n : Nat) : tail n 0 = 2 ^ n := by
+  cases n <;> rfl
 
-theorem popcount_two_mul (n : Nat) : popcount (2 * n) = popcount n := by
-  rw [popcount_div (2 * n)]
-  have hmod : (2 * n) % 2 = 0 := Nat.mul_mod_right 2 n
-  have hdiv : (2 * n) / 2 = n := Nat.mul_div_cancel_left n (by decide : 0 < 2)
-  simp [hmod, hdiv]
-
-theorem popcount_two_mul_add_one (n : Nat) : popcount (2 * n + 1) = popcount n + 1 := by
-  rw [popcount_div (2 * n + 1)]
-  have hmod : (2 * n + 1) % 2 = 1 := by omega
-  have hdiv : (2 * n + 1) / 2 = n := by omega
-  simp [hmod, hdiv]
-
-/-- Sum of `r ^ popcount i` for `i < n`. -/
-def powSum (n r : Nat) : Nat :=
-  match n with
-  | 0 => 0
-  | n + 1 => powSum n r + r ^ popcount n
-
-theorem powSum_succ (n r : Nat) : powSum (n + 1) r = powSum n r + r ^ popcount n := rfl
-
-theorem powSum_two_mul (n : Nat) : powSum (2 * n) 2 = 3 * powSum n 2 := by
+theorem two_pow_le_three_pow (n : Nat) : 2 ^ n ≤ 3 ^ n := by
   induction n with
-  | zero => rfl
+  | zero => decide
   | succ n ih =>
-    have hlen : 2 * (n + 1) = 2 * n + 2 := by omega
-    rw [hlen, powSum_succ, powSum_succ, popcount_two_mul n, popcount_two_mul_add_one n, ih]
-    have hpow : 2 ^ (popcount n + 1) = 2 * 2 ^ popcount n := by rw [Nat.pow_succ]
-    omega
+    calc
+      2 ^ (n + 1) = 2 * 2 ^ n := by rw [Nat.pow_succ]
+      _ ≤ 3 * 2 ^ n := Nat.mul_le_mul_right _ (by decide)
+      _ ≤ 3 * 3 ^ n := Nat.mul_le_mul_left _ ih
+      _ = 3 ^ (n + 1) := by rw [Nat.pow_succ]
 
-theorem powSum_dyadic (k : Nat) : powSum (2 ^ k) 2 = 3 ^ k := by
-  induction k with
-  | zero => rfl
-  | succ k ih =>
-    rw [Nat.pow_succ, Nat.mul_comm, powSum_two_mul (2 ^ k), ih, Nat.pow_succ, Nat.mul_comm]
-
-/-- Number of `i < n` with popcount at least `s`. -/
-def badCount (n s : Nat) : Nat :=
-  match n with
-  | 0 => 0
-  | n + 1 => badCount n s + if s ≤ popcount n then 1 else 0
-
-theorem badCount_succ (n s : Nat) :
-    badCount (n + 1) s = badCount n s + if s ≤ popcount n then 1 else 0 := rfl
-
-theorem bad_le_powSum (n s : Nat) : badCount n s * 2 ^ s ≤ powSum n 2 := by
-  induction n with
-  | zero => rfl
+theorem tail_le (n s : Nat) : tail n s * 2 ^ s ≤ 3 ^ n := by
+  induction n generalizing s with
+  | zero =>
+    cases s <;> simp [tail]
   | succ n ih =>
-    rw [badCount_succ, powSum_succ]
-    by_cases hs : s ≤ popcount n
-    · have hpow : 2 ^ s ≤ 2 ^ popcount n := Nat.pow_le_pow_right (by decide) hs
-      simp [hs]
-      omega
-    · simp [hs]
-      omega
-
-/-- The corrected generating bound. -/
-theorem binomial_tail (k m : Nat) : badCount (2 ^ k) m * 2 ^ m ≤ 3 ^ k := by
-  calc
-    badCount (2 ^ k) m * 2 ^ m ≤ powSum (2 ^ k) 2 := bad_le_powSum (2 ^ k) m
-    _ = 3 ^ k := powSum_dyadic k
+    cases s with
+    | zero => simpa [tail] using two_pow_le_three_pow (n + 1)
+    | succ s =>
+      have h1 := ih s
+      have h2 := ih (s + 1)
+      have hsplit : tail (n + 1) (s + 1) * 2 ^ (s + 1)
+          = tail n s * 2 ^ (s + 1) + tail n (s + 1) * 2 ^ (s + 1) := by
+        simp [tail, Nat.add_mul]
+      have hpow : 2 ^ (s + 1) = 2 * 2 ^ s := by rw [Nat.pow_succ]
+      have hfirst : tail n s * 2 ^ (s + 1) ≤ 2 * 3 ^ n := by
+        rw [hpow, ← Nat.mul_assoc]
+        exact Nat.mul_le_mul_left 2 h1
+      have hsum : tail n s * 2 ^ (s + 1) + tail n (s + 1) * 2 ^ (s + 1)
+          ≤ 2 * 3 ^ n + 3 ^ n := Nat.add_le_add hfirst h2
+      have hthree : 2 * 3 ^ n + 3 ^ n = 3 ^ (n + 1) := by
+        rw [Nat.pow_succ]
+        omega
+      exact le_trans (le_of_eq hsplit) (le_trans hsum (le_of_eq hthree))
 
 end CollatzTeaming
