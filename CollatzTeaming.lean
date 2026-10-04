@@ -7,3 +7,8 @@ import CollatzTeaming.Rhin
 import CollatzTeaming.Steiner
 import CollatzTeaming.Terras
 import CollatzTeaming.TerrasCount
+import CollatzTeaming.TerrasTail
+import CollatzTeaming.Inclusion
+import CollatzTeaming.ForwardOrbit
+import CollatzTeaming.Axiom
+import CollatzTeaming.Replacement
