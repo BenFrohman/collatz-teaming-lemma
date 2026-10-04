@@ -4,11 +4,13 @@ Author: Benjamin Stanley Frohman
 License: Apache-2.0
 
 Terras (1976) and Everett (1977): almost every positive integer has finite
-stopping time. This file states that theorem and proves the local descent
-inequality. It does not prove RemainingLemma.
+stopping time. The residue-count limit is proved in TerrasCount.lean.
+The inclusion of NeverDrops in those bad classes is the remaining step of
+this density theorem. This file does not prove RemainingLemma.
 -/
 
 import CollatzTeaming.ReverseTree
+import CollatzTeaming.TerrasCount
 
 namespace CollatzTeaming
 
@@ -45,9 +47,18 @@ def DensityZero (P : Nat → Prop) : Prop :=
       ∃ bad : List Nat,
         (∀ n, n ≤ X → P n → n ∈ bad) ∧ bad.length * c ≤ X + 1
 
-/-- Terras–Everett: the set that never drops has density zero.
-    Not formalized in this repository. Not a term of type `RemainingLemma`. -/
+/-- The missing count: non-contracting parity vectors have vanishing density. -/
+theorem residue_count_for_terras (c : Nat) (hc : 0 < c) :
+    ∃ t : Nat, tail (5 * t) (3 * t + 1) * c ≤ 2 ^ (5 * t) := by
+  rcases residue_count_limit c hc with ⟨t, h, _⟩
+  exact ⟨t, h⟩
+
+/-- Terras–Everett density. The residue count is proved. The remaining step is
+    the inclusion of `NeverDrops` in the bad residue classes plus a finite
+    set of small exceptions. That inclusion is not the covering claim. -/
 theorem terras_density : DensityZero NeverDrops := by
+  intro c hc
+  rcases residue_count_for_terras c hc with ⟨t, ht⟩
   sorry
 
 /-- Affine descent: if the k-th image has the shape `(3^m n + a) / 2^k`
@@ -57,7 +68,6 @@ theorem drop_of_affine (n k m a : Nat)
     (himg : iter k n * 2 ^ k = 3 ^ m * n + a)
     (hbig : a < (2 ^ k - 3 ^ m) * n) :
     FiniteStoppingTime n := by
-  have h2 : 0 < 2 ^ k := Nat.pow_pos (by decide : 0 < 2)
   have hmul : iter k n * 2 ^ k < n * 2 ^ k := by
     calc
       iter k n * 2 ^ k = 3 ^ m * n + a := himg
