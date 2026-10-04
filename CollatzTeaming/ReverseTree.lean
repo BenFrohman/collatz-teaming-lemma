@@ -2,44 +2,82 @@
 Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved.
 Author: Benjamin Stanley Frohman
 
-Remaining lemma: every positive integer lies in the reverse tree of 1.
-The even inverse branch is proved. The covering claim is not.
+Reverse tree of 1. Local inverse branches are proved.
+The covering claim is the remaining lemma and is not proved.
 -/
+
+import CollatzTeaming.Basic
 
 namespace CollatzTeaming
 
-/-- Ordinary Collatz map. -/
-def C (n : Nat) : Nat :=
-  if n % 2 = 0 then n / 2 else 3 * n + 1
+abbrev C : Nat → Nat := T
 
-/-- `n` lies in the reverse tree of 1 iff some forward iterate equals 1. -/
 def InReverseTree (n : Nat) : Prop :=
-  ∃ k : Nat, (C^[k]) n = 1
+  ∃ k : Nat, iter k n = 1
 
-/-- The remaining lemma. Equivalent to the Collatz conjecture. -/
 def RemainingLemma : Prop :=
   ∀ n : Nat, 0 < n → InReverseTree n
 
 theorem one_in_reverse_tree : InReverseTree 1 :=
   ⟨0, rfl⟩
 
-theorem C_double (m : Nat) : C (2 * m) = m := by
-  have h : (2 * m) % 2 = 0 := by
-    simpa using Nat.mul_mod_right 2 m
-  simp [C, h, Nat.mul_div_cancel_left]
+theorem C_double (m : Nat) : C (2 * m) = m :=
+  even_double m
 
-/-- From any node `m` the branch `2m, 4m, 8m, …` stays in the tree of `m`. -/
 theorem even_preimage (m : Nat) (h : InReverseTree m) : InReverseTree (2 * m) := by
   rcases h with ⟨k, hk⟩
   refine ⟨k + 1, ?_⟩
-  rw [Function.iterate_succ_apply, C_double, hk]
+  rw [iter_succ', even_double, hk]
 
-/-- Odd-predecessor side condition: `(m - 1) / 3` is an integer odd predecessor
-    only when `m ≡ 4 (mod 6)`. This local rule does not force coverage. -/
+def oddPred (m : Nat) : Nat :=
+  (m - 1) / 3
+
+theorem div_add_mod_six (m : Nat) (h : m % 6 = 4) :
+    m = 6 * (m / 6) + 4 := by
+  have hd := Nat.div_add_mod m 6
+  rw [h] at hd
+  exact hd.symm
+
+theorem four_le_of_mod_six (m : Nat) (h : m % 6 = 4) : 4 ≤ m := by
+  have := div_add_mod_six m h
+  omega
+
+theorem oddPred_eq (m : Nat) (h : m % 6 = 4) :
+    oddPred m = 2 * (m / 6) + 1 := by
+  have hm := div_add_mod_six m h
+  unfold oddPred
+  omega
+
+theorem oddPred_odd (m : Nat) (h : m % 6 = 4) : oddPred m % 2 = 1 := by
+  have := oddPred_eq m h
+  omega
+
+theorem C_odd_pred (m : Nat) (h : m % 6 = 4) : C (oddPred m) = m := by
+  have hodd := oddPred_odd m h
+  have heq := oddPred_eq m h
+  have hm := div_add_mod_six m h
+  unfold C
+  rw [T_odd hodd]
+  omega
+
 def OddPredecessor (m : Nat) : Prop :=
-  m % 6 = 4 ∧ 0 < (m - 1) / 3 ∧ ((m - 1) / 3) % 2 = 1 ∧ C ((m - 1) / 3) = m
+  m % 6 = 4 ∧ 0 < oddPred m ∧ oddPred m % 2 = 1 ∧ C (oddPred m) = m
 
-/-- Covering claim. Density zero of a complement does not discharge this. -/
+set_option linter.unusedVariables false in
+theorem oddPredecessor_of_mod_six (m : Nat) (h : m % 6 = 4) (hpos : 0 < m / 6) :
+    OddPredecessor m := by
+  refine ⟨h, ?_, oddPred_odd m h, C_odd_pred m h⟩
+  have hq := oddPred_eq m h
+  omega
+
+theorem mod_six_of_odd_step (n : Nat) (h : n % 2 = 1) :
+    (3 * n + 1) % 6 = 4 := by
+  have hn : n = 2 * (n / 2) + 1 := by
+    have hd := Nat.div_add_mod n 2
+    rw [h] at hd
+    exact hd.symm
+  omega
+
 theorem remaining_lemma_reverse_tree : RemainingLemma := by
   sorry
 
