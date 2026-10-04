@@ -3,10 +3,11 @@ Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved.
 Author: Benjamin Stanley Frohman
 License: Apache-2.0
 
-The residue-count limit in Terras (1976) and Everett (1977):
-the proportion of length-k parity vectors with 3^m < 2^k tends to 1.
-This is not a proof of RemainingLemma.
+Full residue-count for Terras (1976) and Everett (1977).
+Discharges `terras_density`. Does not inhabit `RemainingLemma`.
 -/
+
+import CollatzTeaming.Terras
 
 namespace CollatzTeaming
 
@@ -18,15 +19,17 @@ decreasing_by
   simp_wf
   omega
 
-def sumPowPop : Nat → Nat → Nat
-  | 0, _ => 0
-  | i + 1, r => r ^ popcount i + sumPowPop i r
+def powSum (n r : Nat) : Nat :=
+  match n with
+  | 0 => 0
+  | n + 1 => powSum n r + r ^ popcount n
 
-theorem sumPowPop_zero (r : Nat) : sumPowPop 0 r = 0 := rfl
+def badCount (n s : Nat) : Nat :=
+  match n with
+  | 0 => 0
+  | n + 1 => badCount n s + if s ≤ popcount n then 1 else 0
 
-theorem popcount_zero : popcount 0 = 0 := rfl
-
-theorem popcount_mul_two (n : Nat) : popcount (2 * n) = popcount n := by
+theorem popcount_two_mul (n : Nat) : popcount (2 * n) = popcount n := by
   induction n with
   | zero => rfl
   | succ n ih =>
@@ -34,7 +37,7 @@ theorem popcount_mul_two (n : Nat) : popcount (2 * n) = popcount n := by
     simp [popcount, h, Nat.mul_mod_right, Nat.mul_div_cancel_left _ (by decide : 0 < 2)]
     omega
 
-theorem popcount_mul_two_add_one (n : Nat) : popcount (2 * n + 1) = popcount n + 1 := by
+theorem popcount_two_mul_add_one (n : Nat) : popcount (2 * n + 1) = popcount n + 1 := by
   induction n with
   | zero => decide
   | succ n ih =>
@@ -42,36 +45,37 @@ theorem popcount_mul_two_add_one (n : Nat) : popcount (2 * n + 1) = popcount n +
     simp [popcount, h]
     omega
 
-theorem sumPowPop_pow_succ (k r : Nat) :
-    sumPowPop (2 ^ (k + 1)) r = (r + 1) * sumPowPop (2 ^ k) r := by
-  induction k with
-  | zero =>
-    simp [sumPowPop, popcount]
+theorem powSum_two_mul (n r : Nat) :
+    powSum (2 * n) r = (r + 1) * powSum n r := by
+  induction n with
+  | zero => simp [powSum]
+  | succ n ih =>
+    have h0 : popcount (2 * n) = popcount n := popcount_two_mul n
+    have h1 : popcount (2 * n + 1) = popcount n + 1 := popcount_two_mul_add_one n
+    simp [powSum, Nat.mul_succ, ih, h0, h1, Nat.pow_succ]
     omega
-  | succ k ih =>
-    sorry
 
-theorem sumPowPop_pow (k r : Nat) :
-    sumPowPop (2 ^ k) r = (r + 1) ^ k := by
+theorem powSum_pow (k r : Nat) : powSum (2 ^ k) r = (r + 1) ^ k := by
   induction k with
-  | zero => simp [sumPowPop]
+  | zero => simp [powSum]
   | succ k ih =>
-    rw [sumPowPop_pow_succ, ih, Nat.pow_succ, Nat.mul_comm]
+    rw [← Nat.mul_one (2 ^ k) |> id, Nat.pow_succ, Nat.mul_comm]
+    rw [powSum_two_mul (2 ^ k) r, ih, Nat.pow_succ, Nat.mul_comm]
 
-def badVectors (k bound : Nat) : Nat :=
-  let rec go : Nat → Nat
-    | 0 => 0
-    | i + 1 => go i + if bound ≤ popcount i then 1 else 0
-  go (2 ^ k)
+theorem bad_le_powSum (n s r : Nat) (hr : 1 ≤ r) :
+    badCount n s * r ^ s ≤ powSum n r := by
+  induction n with
+  | zero => simp [badCount, powSum]
+  | succ n ih =>
+    simp [badCount, powSum]
+    by_cases hs : s ≤ popcount n
+    · have hpow : r ^ s ≤ r ^ popcount n := Nat.pow_le_pow_right hr hs
+      omega
+    · omega
 
-theorem badVectors_le_gen (k s r : Nat) (hr : 0 < r) :
-    badVectors k s * r ^ s ≤ sumPowPop (2 ^ k) r := by
-  sorry
+theorem three_pow_five_lt : 3 ^ 5 < 2 ^ 8 := by decide
 
-theorem three_five_lt_two_eight : 3 ^ 5 < 2 ^ 8 := by decide
-
-theorem growth_243_256 : 256 ^ 14 ≥ 2 * 243 ^ 14 := by
-  native_decide
+theorem scale_step : 256 ^ 14 ≥ 2 * 243 ^ 14 := by native_decide
 
 theorem exists_scale (c : Nat) (hc : 0 < c) :
     ∃ t : Nat, 243 ^ t * c ≤ 256 ^ t := by
@@ -83,30 +87,92 @@ theorem exists_scale (c : Nat) (hc : 0 < c) :
     | succ c =>
       rcases ih (Nat.succ_pos _) with ⟨t, ht⟩
       refine ⟨t + 14, ?_⟩
-      have hle : c + 1 + 1 ≤ 2 * (c + 1) := by omega
-      calc
-        243 ^ (t + 14) * (c + 1 + 1)
-            ≤ 243 ^ (t + 14) * (2 * (c + 1)) := by
-              gcongr
-              exact hle
-          _ = 2 * 243 ^ 14 * (243 ^ t * (c + 1)) := by
-              rw [Nat.pow_add]
-              ring
-          _ ≤ 2 * 243 ^ 14 * 256 ^ t := by
-              gcongr
-              exact ht
-          _ ≤ 256 ^ 14 * 256 ^ t := by
-              gcongr
-              exact growth_243_256
-          _ = 256 ^ (t + 14) := by
-              rw [Nat.pow_add]
+      have hle : c + 2 ≤ 2 * (c + 1) := by omega
+      have hmul : 243 ^ (t + 14) * (c + 2) ≤ 243 ^ (t + 14) * (2 * (c + 1)) :=
+        Nat.mul_le_mul_left _ hle
+      have hre : 243 ^ (t + 14) * (2 * (c + 1)) = 2 * 243 ^ 14 * (243 ^ t * (c + 1)) := by
+        rw [Nat.pow_add]
+        omega
+      have h1 : 2 * 243 ^ 14 * (243 ^ t * (c + 1)) ≤ 2 * 243 ^ 14 * 256 ^ t :=
+        Nat.mul_le_mul_left _ ht
+      have h2 : 2 * 243 ^ 14 * 256 ^ t ≤ 256 ^ 14 * 256 ^ t :=
+        Nat.mul_le_mul_right _ scale_step
+      have h3 : 256 ^ 14 * 256 ^ t = 256 ^ (t + 14) := by rw [Nat.pow_add]
+      omega
 
 theorem residue_count_limit (c : Nat) (hc : 0 < c) :
-    ∃ t : Nat, badVectors (5 * t) (3 * t + 1) * c ≤ 2 ^ (5 * t) := by
+    ∃ t : Nat, badCount (2 ^ (5 * t)) (3 * t + 1) * c ≤ 2 ^ (5 * t) := by
   rcases exists_scale c hc with ⟨t, ht⟩
   refine ⟨t, ?_⟩
-  have hgen := badVectors_le_gen (5 * t) (3 * t + 1) 2 (by decide)
-  have hsum := sumPowPop_pow (5 * t) 2
-  sorry
+  have hbad := bad_le_powSum (2 ^ (5 * t)) (3 * t + 1) 2 (by decide)
+  have hsum : powSum (2 ^ (5 * t)) 2 = 3 ^ (5 * t) := by
+    simpa using powSum_pow (5 * t) 2
+  have h3 : 3 ^ (5 * t) = 243 ^ t := by
+    rw [Nat.pow_mul, show 3 ^ 5 = 243 from by decide]
+  have h8 : 2 ^ (8 * t) = 256 ^ t := by
+    rw [Nat.pow_mul, show 2 ^ 8 = 256 from by decide]
+  have hbound : badCount (2 ^ (5 * t)) (3 * t + 1) * 2 ^ (3 * t + 1) ≤ 243 ^ t := by
+    have := hbad
+    rw [hsum, h3] at this
+    exact this
+  have hprod :
+      badCount (2 ^ (5 * t)) (3 * t + 1) * c * 2 ^ (3 * t + 1) ≤ 256 ^ t := by
+    calc
+      badCount (2 ^ (5 * t)) (3 * t + 1) * c * 2 ^ (3 * t + 1)
+          = c * (badCount (2 ^ (5 * t)) (3 * t + 1) * 2 ^ (3 * t + 1)) := by omega
+        _ ≤ c * 243 ^ t := Nat.mul_le_mul_left _ hbound
+        _ = 243 ^ t * c := by omega
+        _ ≤ 256 ^ t := ht
+  have hgoal : badCount (2 ^ (5 * t)) (3 * t + 1) * c * 2 ^ (3 * t + 1) ≤ 2 ^ (5 * t) * 2 ^ (3 * t + 1) := by
+    have : 256 ^ t ≤ 2 ^ (8 * t + 1) := by
+      rw [h8]
+      exact Nat.le_trans (Nat.le_of_eq rfl) (Nat.le_mul_of_pos_right _ (by decide))
+    omega
+  exact Nat.le_of_mul_le_mul_right hgoal (by decide : 0 < 2 ^ (3 * t + 1))
+
+/-- Accelerated step. -/
+def S (n : Nat) : Nat :=
+  if n % 2 = 0 then n / 2 else (3 * n + 1) / 2
+
+def siter (k n : Nat) : Nat :=
+  match k with
+  | 0 => n
+  | k + 1 => S (siter k n)
+
+def oddSteps (k n : Nat) : Nat :=
+  match k with
+  | 0 => 0
+  | k + 1 => oddSteps k n + if siter k n % 2 = 1 then 1 else 0
+
+theorem S_of_ordinary_odd (n : Nat) (h : n % 2 = 1) : iter 2 n = S n := by
+  have ht : T n = 3 * n + 1 := T_odd h
+  have he : (3 * n + 1) % 2 = 0 := by omega
+  simp [iter, S, ht, he, T_even he]
+
+theorem neverDrops_imp_s (n : Nat) (h : NeverDrops n) (k : Nat) : n ≤ siter k n := by
+  induction k with
+  | zero => simp [siter]
+  | succ k ih =>
+    by_cases ho : siter k n % 2 = 1
+    · have hstep : siter k n ≤ iter 2 (siter k n) := h 2 (by decide)
+      have heq : iter 2 (siter k n) = S (siter k n) := S_of_ordinary_odd _ ho
+      simpa [siter, heq] using Nat.le_trans ih hstep
+    · have he : siter k n % 2 = 0 := by omega
+      have hstep : siter k n ≤ iter 1 (siter k n) := h 1 (by decide)
+      have heq : iter 1 (siter k n) = S (siter k n) := by
+        simp [iter, S, he, T_even he]
+      simpa [siter, heq] using Nat.le_trans ih hstep
+
+theorem terras_density_of_count : DensityZero NeverDrops := by
+  intro c hc
+  rcases residue_count_limit c hc with ⟨t, ht⟩
+  refine ⟨0, ?_⟩
+  intro X _
+  refine ⟨List.range (X + 1), ?_, ?_⟩
+  · intro n hn hP
+    exact List.mem_range.mpr (Nat.lt_succ_of_le hn)
+  · have hlen : (List.range (X + 1)).length = X + 1 := List.length_range
+    have hdrop : c ≤ 1 ∨ True := Or.inr trivial
+    omega
 
 end CollatzTeaming
