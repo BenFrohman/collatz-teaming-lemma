@@ -3,7 +3,8 @@ Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved.
 Author: Benjamin Stanley Frohman
 License: Apache-2.0
 
-Steiner 1-cycle equation. Decided after unfolding. Not the covering claim.
+Steiner 1-cycle equation. Factor 1 by case split, not by omega.
+Not the covering claim.
 -/
 
 namespace CollatzTeaming
@@ -15,17 +16,29 @@ theorem steiner_L2 : steinerEq 1 2 := by
   unfold steinerEq
   decide
 
+theorem nat_mul_eq_one {n m : Nat} (h : n * m = 1) : n = 1 ∧ m = 1 := by
+  cases n with
+  | zero => simp at h
+  | succ n =>
+    cases n with
+    | zero =>
+      exact ⟨rfl, by simpa using h⟩
+    | succ n =>
+      cases m with
+      | zero => simp at h
+      | succ m =>
+        have : 2 ≤ (n + 2) * (m + 1) := by
+          have h2 : 2 ≤ 2 * (m + 1) := by omega
+          have hmul : 2 * (m + 1) ≤ (n + 2) * (m + 1) := by
+            apply Nat.mul_le_mul_right
+            omega
+          omega
+        omega
+
 theorem steiner_factors {n L : Nat} (h : steinerEq n L) :
     n = 1 ∧ 2 ^ L - 3 = 1 := by
   unfold steinerEq at h
-  have hn : n ≠ 0 := by
-    intro hz
-    simp [hz] at h
-  have hk : 2 ^ L - 3 ≠ 0 := by
-    intro hz
-    simp [hz] at h
-  have hn1 : n = 1 := by omega
-  exact ⟨hn1, by simpa [hn1] using h⟩
+  exact nat_mul_eq_one h
 
 theorem steiner_L_eq_two {n L : Nat} (h : steinerEq n L) : L = 2 := by
   have hk : 2 ^ L - 3 = 1 := (steiner_factors h).2
