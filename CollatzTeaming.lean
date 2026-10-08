@@ -18,4 +18,4 @@ import CollatzTeaming.Inclusion
 import CollatzTeaming.ForwardOrbit
 import CollatzTeaming.Axiom
 import CollatzTeaming.Replacement
-import CollatzTeaming.Derived
+import CollatzTeaming.Kernel
