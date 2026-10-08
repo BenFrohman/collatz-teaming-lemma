@@ -3,8 +3,8 @@
 **Author:** Benjamin Stanley Frohman (`@Investor0x`, GitHub `BenFrohman`)  
 **Email:** frohmanbenjamin@gmail.com  
 **ORCID:** [0009-0006-7068-3718](https://orcid.org/0009-0006-7068-3718)  
-**Copyright:** © 2026 Benjamin Stanley Frohman  
-**License:** [CC BY 4.0](LICENSE)
+**Copyright:** © 2026 Benjamin Stanley Frohman. All rights reserved, except as granted by the license.  
+**License:** [Apache License 2.0](LICENSE)
 
 **Status: the remaining lemma is not certified.**
 
@@ -21,6 +21,7 @@ That sentence is the Collatz conjecture on the positive integers. Lean records t
 - Predicates D (dichotomy) and R (reduction to the two Δs).
 - The definition of inverse-residue teams.
 - `RemainingLemma ↔ CollatzConjecture` by definition.
+- Scene certificates in `CollatzTeaming/Kernel.lean`: inverse parent rule, the amber edge, five finite orbits, and the halving family. These do not inhabit `RemainingLemma`.
 
 ## What is not certified
 
@@ -40,6 +41,8 @@ See `docs/`. Entry points: `LEDGER.md`, `LEMMA1_CITED.md`, `LMN_SPLIT.md`, `DO_N
 ## Contributing
 
 Read [CONTRIBUTING.md](CONTRIBUTING.md). PRs need @BenFrohman approval. See [COPYRIGHT](COPYRIGHT) and [LICENSE](LICENSE).
+
+No upstream Mathlib pull request until `lake build` is clean, the contributed files contain no `sorry`, and the statement matches what the author can defend. A finite orbit certificate is not a Mathlib contribution of Collatz.
 
 ## Circularity note
 
