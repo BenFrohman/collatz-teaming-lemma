@@ -9,9 +9,10 @@ import CollatzTeaming.Basic
 /-!
 # Terras density, as a statement
 
-Terras (1976) and Everett (1977): almost every positive integer has a first
-descent below its start. This file states that claim. It does not prove it,
-and it does not prove `RemainingLemma`.
+Terras (1976) and Everett (1977): the numbers that never fall below their
+start have density zero. This file states that claim. It does not prove it.
+It does not prove `RemainingLemma`, the claim that every positive `n`
+satisfies `∃ k, iter k n = 1`.
 -/
 
 namespace CollatzTeaming
