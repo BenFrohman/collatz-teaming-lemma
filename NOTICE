@@ -1,4 +1,10 @@
 Collatz teaming lemma
 Copyright 2026 Benjamin Stanley Frohman
-Licensed under CC BY 4.0. See LICENSE.
+ORCID: https://orcid.org/0009-0006-7068-3718
+
+As of this commit, this repository is offered under the Apache License, Version 2.0.
+See LICENSE.
+
+Copies already received under CC BY 4.0 keep that grant. This commit does not revoke it.
+
 Not a Collatz proof. remaining_lemma is sorry.

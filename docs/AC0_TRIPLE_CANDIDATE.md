@@ -5,7 +5,7 @@ Email: frohmanbenjamin@gmail.com
 ORCID: 0009-0006-7068-3718
 GitHub: BenFrohman
 X: @Investor0x
-Copyright (c) 2026 Benjamin Stanley Frohman. License: CC BY 4.0. See LICENSE.
+Copyright (c) 2026 Benjamin Stanley Frohman. License: Apache-2.0. See LICENSE.
 
 Status: proposed pattern. Not a theorem. Not a cycle. Not Lemma 1.
 

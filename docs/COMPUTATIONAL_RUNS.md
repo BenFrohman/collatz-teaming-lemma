@@ -1,6 +1,6 @@
 # Computational runs — 24 September 2026
 
-Copyright (c) 2026 Benjamin Stanley Frohman. CC BY 4.0. ORCID 0009-0006-7068-3718.
+Copyright (c) 2026 Benjamin Stanley Frohman. Apache-2.0. ORCID 0009-0006-7068-3718.
 
 High-precision CF of log_2 3 (mpmath dps=80). Data, not Lemma 1.
 

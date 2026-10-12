@@ -5,7 +5,7 @@ Email: frohmanbenjamin@gmail.com
 ORCID: 0009-0006-7068-3718
 GitHub: BenFrohman
 X: @Investor0x
-Copyright (c) 2026 Benjamin Stanley Frohman. License: CC BY 4.0.
+Copyright (c) 2026 Benjamin Stanley Frohman. License: Apache-2.0.
 Date: 28 September 2026.
 
 This file is the author's ledger of the Diophantine circle for a hypothetical 92-block Collatz cycle. Cited papers are not co-authorship.

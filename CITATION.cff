@@ -8,6 +8,6 @@ authors:
     email: frohmanbenjamin@gmail.com
     orcid: https://orcid.org/0009-0006-7068-3718
 repository-code: https://github.com/BenFrohman/collatz-teaming-lemma
-license: CC-BY-4.0
+license: Apache-2.0
 version: "2026-09-24"
 date-released: "2026-09-24"

@@ -17,4 +17,4 @@ Author and copyright holder: Benjamin Stanley Frohman.
 
 ## License
 
-CC BY 4.0. Attribution must name Benjamin Stanley Frohman and this repository URL.
+Apache-2.0. Attribution must name Benjamin Stanley Frohman and this repository URL.

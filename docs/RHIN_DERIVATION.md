@@ -5,7 +5,7 @@ Email: frohmanbenjamin@gmail.com
 ORCID: 0009-0006-7068-3718
 GitHub: BenFrohman
 X: @Investor0x
-Copyright (c) 2026 Benjamin Stanley Frohman. License: CC BY 4.0. See LICENSE and COPYRIGHT.
+Copyright (c) 2026 Benjamin Stanley Frohman. License: Apache-2.0. See LICENSE and COPYRIGHT.
 
 Rhin’s bound is an effective irrationality measure for linear forms in log 2 and log 3. It is not a Collatz theorem. The Collatz use is a rewrite. Not Lemma 1. Not a written 92-cycle.
 

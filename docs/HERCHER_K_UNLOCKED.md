@@ -1,6 +1,6 @@
 # Hercher Corollary 29 under Barina X0 = 2^71
 
-Copyright (c) 2026 Benjamin Stanley Frohman. CC BY 4.0. See LICENSE.
+Copyright (c) 2026 Benjamin Stanley Frohman. Apache-2.0. See LICENSE.
 
 Hypothesis granted by the author of this repo: Barina 2025, every n < 2^71 reaches C0.
 

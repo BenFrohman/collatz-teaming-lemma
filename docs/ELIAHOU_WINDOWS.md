@@ -1,6 +1,6 @@
 # Eliahou windows
 
-Copyright (c) 2026 Benjamin Stanley Frohman. CC BY 4.0. See LICENSE.
+Copyright (c) 2026 Benjamin Stanley Frohman. Apache-2.0. See LICENSE.
 
 A window is a necessary congruence on cycle *length*. It is not a cycle.
 Only 2/1 among the small convergents of log2 3 is an actual cycle (C0 in the Steiner 1-block equation 2^2-3=1).

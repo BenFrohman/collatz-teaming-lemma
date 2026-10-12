@@ -1,6 +1,6 @@
 # Type dictionary — m is not K is not n
 
-Copyright (c) 2026 Benjamin Stanley Frohman. CC BY 4.0. See LICENSE.
+Copyright (c) 2026 Benjamin Stanley Frohman. Apache-2.0. See LICENSE.
 
 These letters are different objects. Mixing them is how Lemma 1 gets mis-titled.
 
