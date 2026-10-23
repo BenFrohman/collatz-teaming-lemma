@@ -1,3 +1,4 @@
+<!-- Copyright (c) 2026 Benjamin Stanley Frohman. Licensed under Apache-2.0. -->
 # Full grind record — 24 September 2026
 
 Author: Benjamin Stanley Frohman. This file deposits the agent-grind screenshots into the ledger.

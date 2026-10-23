@@ -1,3 +1,4 @@
+<!-- Copyright (c) 2026 Benjamin Stanley Frohman. Licensed under Apache-2.0. -->
 # Positive cycles of C_- = 3n-1
 
 These are cycles of a different map. They are not Δ_cyc(T) for T=3n+1.

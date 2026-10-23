@@ -1,3 +1,4 @@
+<!-- Copyright (c) 2026 Benjamin Stanley Frohman. Licensed under Apache-2.0. -->
 # Frohman model mean
 
 Name on this ledger for the expected odd-to-odd contraction of T=3n+1:

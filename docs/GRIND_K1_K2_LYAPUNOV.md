@@ -1,3 +1,4 @@
+<!-- Copyright (c) 2026 Benjamin Stanley Frohman. Licensed under Apache-2.0. -->
 # Grind: K=1 cycle, K=2 window, naive Lyapunov
 
 24 September 2026. Sweat, not a discharge. One special case of Lemma 1 is a finished local theorem. Lemma 1, Lemma 2, and Lemma L stay open.

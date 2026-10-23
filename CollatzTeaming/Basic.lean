@@ -1,7 +1,9 @@
 /-
 Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved.
-Author: Benjamin Stanley Frohman
-
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Benjamin Stanley Frohman
+-/
+/-
 Local structure of the classical 3n+1 map. No covering claim.
 -/
 

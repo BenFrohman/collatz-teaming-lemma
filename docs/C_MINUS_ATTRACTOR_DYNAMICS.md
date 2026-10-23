@@ -1,3 +1,4 @@
+<!-- Copyright (c) 2026 Benjamin Stanley Frohman. Licensed under Apache-2.0. -->
 # C_- attractor dynamics
 
 Three attractors, no clean residue lock. Not L_-.

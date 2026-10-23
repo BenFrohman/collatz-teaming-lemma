@@ -1,3 +1,4 @@
+<!-- Copyright (c) 2026 Benjamin Stanley Frohman. Licensed under Apache-2.0. -->
 # Predicates D and R
 
 These were named in the grind as proved and were not written. They are elementary facts about T on ℕ, not Collatz.

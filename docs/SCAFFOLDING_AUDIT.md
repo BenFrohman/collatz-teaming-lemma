@@ -1,3 +1,4 @@
+<!-- Copyright (c) 2026 Benjamin Stanley Frohman. Licensed under Apache-2.0. -->
 # Scaffolding audit — 24 September 2026
 
 Object audited: the locked Collatz ledger (cycles vs paths, Prop 1.1, Simons, Lemmas 1, 2, L).

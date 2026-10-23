@@ -1,3 +1,4 @@
+<!-- Copyright (c) 2026 Benjamin Stanley Frohman. Licensed under Apache-2.0. -->
 # Tao 2020 notes mapped onto this ledger
 
 Source: Terence Tao, The Notorious Collatz Conjecture,

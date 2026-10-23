@@ -1,3 +1,4 @@
+<!-- Copyright (c) 2026 Benjamin Stanley Frohman. Licensed under Apache-2.0. -->
 # Ledger — cycles are closed; blocks are paths
 
 Collatz is not “every path is a cycle.” It is: every positive orbit reaches the trivial cycle 1→4→2→1. That splits as

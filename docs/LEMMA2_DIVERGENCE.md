@@ -1,3 +1,4 @@
+<!-- Copyright (c) 2026 Benjamin Stanley Frohman. Licensed under Apache-2.0. -->
 # Lemma 2 — divergence, defined
 
 Let T be the classical map on ℕ, T(0)=0. Write O(n)={T^[k] n : k≥0}.

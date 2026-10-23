@@ -1,3 +1,4 @@
+<!-- Copyright (c) 2026 Benjamin Stanley Frohman. Licensed under Apache-2.0. -->
 # Negative expected drift does not imply a unique attractor at 1
 
 **Not a disproof of the Collatz conjecture.**

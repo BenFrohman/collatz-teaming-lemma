@@ -1,7 +1,9 @@
 /-
 Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved.
-Author: Benjamin Stanley Frohman
-
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Benjamin Stanley Frohman
+-/
+/-
 Reverse tree of 1. Local inverse branches are proved.
 The covering claim is the remaining lemma and is not proved.
 -/

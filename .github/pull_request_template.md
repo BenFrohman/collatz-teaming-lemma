@@ -1,3 +1,4 @@
+<!-- Copyright (c) 2026 Benjamin Stanley Frohman. Licensed under Apache-2.0. -->
 ## Checklist
 
 - [ ] This PR does not claim to prove or disprove Collatz unless that is the explicit, checked content.

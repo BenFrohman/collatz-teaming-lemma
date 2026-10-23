@@ -1,3 +1,4 @@
+<!-- Copyright (c) 2026 Benjamin Stanley Frohman. Licensed under Apache-2.0. -->
 # Lemma 1 — proof details
 
 Lemma 1 (this project): Δ_cyc(T) = ∅. Every closed T-orbit is C0 = (1 → 4 → 2 ↑ 1).

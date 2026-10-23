@@ -1,3 +1,4 @@
+<!-- Copyright (c) 2026 Benjamin Stanley Frohman. Licensed under Apache-2.0. -->
 # Linear forms vs grind vs C_-
 
 The a,b ≤ 30 grind is the wrong grain.

@@ -1,6 +1,6 @@
 # Collatz teaming lemma — Lean skeleton
 
-**Author:** Benjamin Stanley Frohman (`@Investor0x`, GitHub `BenFrohman`)  
+**Author:** Benjamin Stanley Frohman (``, GitHub `BenFrohman`)  
 **Email:** frohmanbenjamin@gmail.com  
 **ORCID:** [0009-0006-7068-3718](https://orcid.org/0009-0006-7068-3718)  
 **Copyright:** © 2026 Benjamin Stanley Frohman. All rights reserved, except as granted by the license.  

@@ -1,8 +1,9 @@
 /-
 Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved.
-Author: Benjamin Stanley Frohman
-License: Apache-2.0
-
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Benjamin Stanley Frohman
+-/
+/-
 Steiner 1-cycle equation. Factor 1 by case split, not by omega.
 Not the covering claim.
 -/

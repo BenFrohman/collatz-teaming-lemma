@@ -1,3 +1,4 @@
+<!-- Copyright (c) 2026 Benjamin Stanley Frohman. Licensed under Apache-2.0. -->
 # LMN split (typed)
 
 Let LMN be Laurent–Mignotte–Nesterenko, Formes linéaires en deux logarithmes et déterminants d’interpolation, J. Number Theory 55 (1995), 285–321.

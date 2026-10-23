@@ -1,7 +1,9 @@
 /-
 Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved.
-Author: Benjamin Stanley Frohman
-
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Benjamin Stanley Frohman
+-/
+/-
 Kernel certificates for the two data-backed scenes: the inverse parent rule,
 and five forward orbits. Each closed theorem is checked by the Lean kernel
 (`decide` reduces in the kernel; `iterate_halve` is an induction).

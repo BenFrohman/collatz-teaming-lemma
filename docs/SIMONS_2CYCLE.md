@@ -1,3 +1,4 @@
+<!-- Copyright (c) 2026 Benjamin Stanley Frohman. Licensed under Apache-2.0. -->
 # Simons on 2-cycles — checked 24 September 2026
 
 Terminology first. In Steiner–Simons an m-cycle is m blocks, each a run of odd (ascent) steps followed by a run of even (descent) steps. A 2-cycle is two such blocks. Total odd count K = k1+k2 may be large. That is not “two odd integers.”

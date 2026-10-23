@@ -1,8 +1,9 @@
 /-
 Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved.
-Author: Benjamin Stanley Frohman
-License: Apache-2.0
-
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Benjamin Stanley Frohman
+-/
+/-
 Terras (1976) and Everett (1977): almost every positive integer has finite
 stopping time. The residue-count limit is proved in TerrasCount.lean.
 The inclusion of NeverDrops in those bad classes is the remaining step of
