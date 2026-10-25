@@ -1,0 +1,34 @@
+% Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved.
+% Released under Apache 2.0 license as described in the file LICENSE.
+% Authors: Benjamin Stanley Frohman (ORCID: 0009-0006-7068-3718)
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+
+\title{\textbf{Negative Expected Drift Does Not Imply a Unique Attractor at 1: Eliahou Windows, Rhin Linear Forms in Logarithms, and the Collatz Teaming Lemma in Lean 4}}
+\author{Benjamin Stanley Frohman\\
+\small Independent Researcher \quad|\quad ORCID: \href{https://orcid.org/0009-0006-7068-3718}{0009-0006-7068-3718}\\
+\small \texttt{frohmanbenjamin@gmail.com}}
+\date{Origin Provenance: September 20, 2026 (15:47:26 CDT) \\ \small Repository: \texttt{BenFrohman/collatz-teaming-lemma} \quad|\quad Licensed under Apache-2.0}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We formalize in Lean 4 (\texttt{CollatzTeaming}, 23 modules) the inverse-residue ``teaming'' architecture for the classical Collatz map $T$, proving the logical equivalence \texttt{RemainingLemma $\leftrightarrow$ CollatzConjecture}, certifying the trivial cycle $C_0 = (1 \to 4 \to 2 \to 1)$, inverse parent rules, finite orbit scene certificates, and the $M_{92}$ block-map Diophantine identities, while leaving the universal \texttt{remaining\_lemma} explicitly open. In companion notes (\texttt{MU\_F\_SLOGAN\_NOTE.md}, \texttt{ELIAHOU\_WINDOWS.md}, \texttt{RHIN\_DERIVATION.md}), we establish the Frohman Model Mean observation: the Syracuse logarithmic drift $\mu_F = \log(3/4) < 0$ is identical for $3n+1$ and $3n-1$, yet $3n-1$ possesses three distinct positive cycles ($1$, $5$, and $17$). Thus negative expected logarithmic drift alone cannot rule out non-trivial cycles.
+\end{abstract}
+
+\section{Certified Kernel Components vs.\ Open Frontier}
+\begin{enumerate}
+  \item \textbf{Certified in Lean 4:} The classical map $T$, trivial cycle $C_0 = \{1,4,2\}$, dichotomy/reduction predicates $D$ and $R$, inverse-residue team definitions, \texttt{RemainingLemma $\leftrightarrow$ CollatzConjecture}, $M_{92}$ block-map identities, and Eliahou/Steiner/Rhin structural reductions.
+  \item \textbf{Frohman Model Mean Observation ($\mu_F = \log(3/4) < 0$):} Demonstrates via the conjugate map $C_-(n) = 3n-1$ (equivalent to $3n+1$ on negative integers) that negative heuristic drift coexists with multiple periodic attractors ($1 \to 2 \to 1$, the 5-cycle at $5$, and the 18-step cycle at $17$).
+  \item \textbf{Explicit Non-Claim:} No proof of the global Collatz conjecture is claimed; \texttt{remaining\_lemma} is explicitly marked open.
+\end{enumerate}
+
+\section*{License and Copyright}
+Copyright \copyright\ 2026 Benjamin Stanley Frohman. All rights reserved. Licensed under the Apache License, Version 2.0 (\url{http://www.apache.org/licenses/LICENSE-2.0}).
+\end{document}

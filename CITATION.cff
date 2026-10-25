@@ -1,13 +1,14 @@
 cff-version: 1.2.0
-title: Collatz teaming lemma — Lean skeleton and ledger
-message: Cite this ledger as a status note, not as a proof of Collatz.
-type: software
+message: "If you use this work, please cite it using the metadata below."
+title: "Negative Expected Drift Does Not Imply a Unique Attractor at 1: Eliahou Windows, Rhin Linear Forms in Logarithms, and the Collatz Teaming Lemma in Lean 4"
 authors:
-  - family-names: Frohman
-    given-names: Benjamin Stanley
-    email: frohmanbenjamin@gmail.com
-    orcid: https://orcid.org/0009-0006-7068-3718
-repository-code: https://github.com/BenFrohman/collatz-teaming-lemma
-license: Apache-2.0
-version: "2026-09-24"
-date-released: "2026-09-24"
+  - family-names: "Frohman"
+    given-names: "Benjamin Stanley"
+    orcid: "https://orcid.org/0009-0006-7068-3718"
+    email: "frohmanbenjamin@gmail.com"
+version: "1.0.0"
+doi: "10.5281/zenodo.23629486"
+date-released: "2026-09-20"
+license: "Apache-2.0"
+repository-code: "https://github.com/BenFrohman/collatz-teaming-lemma"
+url: "https://doi.org/10.5281/zenodo.23629486"

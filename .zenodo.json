@@ -1,0 +1,33 @@
+{
+  "title": "Negative Expected Drift Does Not Imply a Unique Attractor at 1: Eliahou Windows, Rhin Linear Forms in Logarithms, and the Collatz Teaming Lemma in Lean 4",
+  "upload_type": "publication",
+  "publication_type": "preprint",
+  "publication_date": "2026-09-20",
+  "version": "1.0.0",
+  "license": "Apache-2.0",
+  "doi": "10.5281/zenodo.23629486",
+  "creators": [
+    {
+      "name": "Frohman, Benjamin Stanley",
+      "affiliation": "Independent Researcher",
+      "orcid": "0009-0006-7068-3718"
+    }
+  ],
+  "keywords": [
+    "Collatz conjecture",
+    "Eliahou bounds",
+    "linear forms in logarithms",
+    "Syracuse drift",
+    "Lean 4",
+    "inverse-residue teams"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/BenFrohman/collatz-teaming-lemma",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    }
+  ],
+  "notes": "Origin Provenance: 2026-09-20 15:47:26 CDT (Git Initial Commit). Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved. Licensed under the Apache License, Version 2.0 (http://www.apache.org/licenses/LICENSE-2.0).",
+  "description": "<p>23-module Lean 4 formalization and companion study of inverse-residue teaming for the 3n+1 map, M92 block-map Diophantine identities, Eliahou/Steiner/Rhin cycle bounds, and the Frohman Model Mean observation (<code>&mu;_F = log(3/4) &lt; 0</code>) showing via <code>3n-1</code> that negative expected logarithmic drift coexists with multiple periodic attractors.</p>"
+}

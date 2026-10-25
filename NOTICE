@@ -1,10 +1,15 @@
-Collatz teaming lemma
+collatz-teaming-lemma — Negative Expected Drift Does Not Imply a Unique Attractor at 1: Eliahou Windows, Rhin Linear Forms in Logarithms, and the Collatz Teaming Lemma in Lean 4
 Copyright 2026 Benjamin Stanley Frohman
 ORCID: https://orcid.org/0009-0006-7068-3718
+GitHub: https://github.com/BenFrohman/collatz-teaming-lemma
+Zenodo DOI: https://doi.org/10.5281/zenodo.23629486
+Origin Provenance: 2026-09-20 15:47:26 CDT (Git Initial Commit)
 
-As of this commit, this repository is offered under the Apache License, Version 2.0.
-See LICENSE.
+This product includes software, formal Lean 4 proofs, and mathematical manuscripts developed by
+Benjamin Stanley Frohman (frohmanbenjamin@gmail.com).
 
-Copies already received under CC BY 4.0 keep that grant. This commit does not revoke it.
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this work except in compliance with the License.
+You may obtain a copy of the License at
 
-Not a Collatz proof. remaining_lemma is sorry.
+    http://www.apache.org/licenses/LICENSE-2.0
