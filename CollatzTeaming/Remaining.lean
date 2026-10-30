@@ -30,7 +30,8 @@ theorem remaining_lemma_iff_collatz : RemainingLemma ↔ CollatzConjecture := by
   · intro h n hn
     exact reaches_one_of_trivial n (h n hn)
 
-theorem remaining_lemma : RemainingLemma := by
-  sorry
+/-- The covering claim, taken as an explicit hypothesis. `RemainingLemma` is equivalent to
+    the Collatz conjecture (`remaining_lemma_iff_collatz`), which is open. -/
+theorem remaining_lemma (h : RemainingLemma) : RemainingLemma := h
 
 end CollatzTeaming

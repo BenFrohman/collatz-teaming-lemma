@@ -44,7 +44,7 @@ theorem tail_le (n s : Nat) : tail n s * 2 ^ s ≤ 3 ^ n := by
         simp [tail, Nat.add_mul]
       have hpow : 2 ^ (s + 1) = 2 ^ s * 2 := by rw [Nat.pow_succ]
       have hfirst : tail n s * 2 ^ (s + 1) ≤ 3 ^ n * 2 := by
-        rw [hpow, Nat.mul_assoc]
+        rw [hpow, ← Nat.mul_assoc]
         exact Nat.mul_le_mul_right 2 h1
       have hsum : tail n s * 2 ^ (s + 1) + tail n (s + 1) * 2 ^ (s + 1)
           ≤ 3 ^ n * 2 + 3 ^ n := Nat.add_le_add hfirst h2

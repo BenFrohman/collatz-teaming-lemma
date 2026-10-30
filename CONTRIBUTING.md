@@ -10,7 +10,7 @@ Author and copyright holder: Benjamin Stanley Frohman.
 
 ## Content rules
 
-- Do not delete `sorry` on `remaining_lemma` unless a complete proof is supplied and the author accepts it.
+- Do not remove the `(h : RemainingLemma)` hypothesis unless a complete proof is supplied and the author accepts it.
 - Do not write ¬L, ¬L_-, or ¬Lemma 1 from the μ_F slogan note.
 - Do not rename the classical C_- 5-cycle or 17-cycle as a Frohman cycle.
 - Cite Steiner, Simons, Simons–de Weger, Hercher, Eliahou by the entries in docs/LEMMA1_CITED.md.

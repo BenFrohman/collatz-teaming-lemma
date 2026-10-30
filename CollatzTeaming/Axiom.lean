@@ -13,11 +13,8 @@ import CollatzTeaming.ReverseTree
 
 namespace CollatzTeaming
 
-/-- Open assumption: every positive integer lies in the reverse tree of 1.
-    Equivalent to the Collatz conjecture. Not derived from the local inverse rules. -/
-axiom remaining_lemma_assumption : RemainingLemma
-
-theorem remaining_lemma_from_assumption : RemainingLemma :=
-  remaining_lemma_assumption
+/-- The covering claim enters only as an explicit hypothesis `h : RemainingLemma`.
+    It is equivalent to the Collatz conjecture and is not proved here. -/
+theorem remaining_lemma_from_assumption (h : RemainingLemma) : RemainingLemma := h
 
 end CollatzTeaming

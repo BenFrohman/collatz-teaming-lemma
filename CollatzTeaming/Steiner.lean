@@ -17,24 +17,8 @@ theorem steiner_L2 : steinerEq 1 2 := by
   unfold steinerEq
   decide
 
-theorem nat_mul_eq_one {n m : Nat} (h : n * m = 1) : n = 1 ∧ m = 1 := by
-  cases n with
-  | zero => simp at h
-  | succ n =>
-    cases n with
-    | zero =>
-      exact ⟨rfl, by simpa using h⟩
-    | succ n =>
-      cases m with
-      | zero => simp at h
-      | succ m =>
-        have : 2 ≤ (n + 2) * (m + 1) := by
-          have h2 : 2 ≤ 2 * (m + 1) := by omega
-          have hmul : 2 * (m + 1) ≤ (n + 2) * (m + 1) := by
-            apply Nat.mul_le_mul_right
-            omega
-          omega
-        omega
+theorem nat_mul_eq_one {n m : Nat} (h : n * m = 1) : n = 1 ∧ m = 1 :=
+  ⟨Nat.eq_one_of_mul_eq_one_right h, Nat.eq_one_of_mul_eq_one_left h⟩
 
 theorem steiner_factors {n L : Nat} (h : steinerEq n L) :
     n = 1 ∧ 2 ^ L - 3 = 1 := by

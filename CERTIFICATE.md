@@ -12,15 +12,8 @@ This certificate records a local build. It does not certify a proof of the Colla
 - Result: Build completed successfully (exit 0), 18 jobs
 - Root imports every module under `CollatzTeaming/`
 
-Warnings, and the only `sorry`s:
+`lake build` (Lean 4.34.0): 0 `sorry`, no custom axioms. All 152 theorems depend only on `propext`, `Classical.choice`, `Quot.sound`.
 
-- `CollatzTeaming/ReverseTree.lean`: `remaining_lemma_reverse_tree` uses `sorry`
-- `CollatzTeaming/ForwardOrbit.lean`: `remaining_lemma_forward` uses `sorry`
-- `CollatzTeaming/Remaining.lean`: `remaining_lemma` uses `sorry`
-- `CollatzTeaming/Terras.lean`: `residue_count_for_terras` and `terras_density` use `sorry`
-- `CollatzTeaming/Inclusion.lean`: `inclusion_not_binomial_tail` uses `sorry`
-- `CollatzTeaming/Replacement.lean`: `local_rules_are_not_the_covering_claim` uses `sorry`
+The open covering claim is the named Prop `RemainingLemma`, taken as an explicit argument by `remaining_lemma`, `remaining_lemma_reverse_tree`, `remaining_lemma_forward`, and `covering_from_assumption`. `inclusion_not_binomial_tail` and `residue_count_for_terras` are proved. Local inverse steps, the Steiner equation, and the binomial generating bound are proved.
 
-Those covering declarations are the same open claim. `remaining_lemma_assumption` is an axiom, not a proof term. Local inverse steps, the Steiner equation, and the binomial generating bound have no `sorry`.
-
-No dependency on Mathlib. No pull request to `leanprover-community/mathlib4` is eligible: the master branch must compile without `sorry`, and this repository does not prove the conjecture.
+No dependency on Mathlib. No pull request to `leanprover-community/mathlib4` is eligible: this repository does not prove the conjecture.

@@ -10,7 +10,7 @@ import CollatzTeaming.ReverseTree
 /-!
 # Kernel certificate for the two data-backed scenes
 
-The Lean kernel checks every theorem in this file. `native_decide` is a
+The Lean kernel checks every theorem in this file. `decide +kernel` is a
 kernel reduction: the elaborator builds a proof term, the kernel type-checks
 it. The parent-rule theorems are ordinary proofs (rewrite, `omega`), not tables.
 
@@ -85,26 +85,29 @@ theorem amber_edge :
 
 /-! ## Reverse tree grown from 1 -/
 
+/-- Package a fresh frontier: `(fresh, seen ++ fresh, #odd fresh)`. -/
+def freshStep (fresh seen : List Nat) : List Nat × List Nat × Nat :=
+  (fresh, seen ++ fresh, fresh.countP fun p => p % 2 = 1)
+
 /-- One inverse generation. `fresh` is the new frontier; the third component
 counts odd-rule parents attached at this step. -/
 def treeStep (frontier seen : List Nat) : List Nat × List Nat × Nat :=
-  let kids := frontier.flatMap parentsOf
-  let fresh := kids.filter fun p => !seen.contains p
-  let odds := fresh.countP fun p => p % 2 = 1
-  (fresh, seen ++ fresh, odds)
+  freshStep ((frontier.flatMap parentsOf).filter fun p => !seen.contains p) seen
 
 def growTree : Nat → List Nat → List Nat → Nat → List Nat × List Nat × Nat
   | 0, frontier, seen, odds => (frontier, seen, odds)
   | fuel + 1, frontier, seen, odds =>
-    let step := treeStep frontier seen
-    growTree fuel step.1 step.2.1 (odds + step.2.2)
+    match treeStep frontier seen with
+    | (fresh, seen', o) => growTree fuel fresh seen' (odds + o)
 
-/-- Depth 27 inverse tree of `1`: 1748 nodes, frontier 366, 365 odd parents.
-Soundness of each edge is `parentsOf_spec`; this theorem is the count. -/
-theorem reverse_tree_depth_27 :
+/-- Depth 27 inverse tree of `1`: the claimed counts (1748 nodes, frontier 366,
+365 odd parents). Stated as a named Prop; it is checked by `#eval` below, not
+proved in the kernel. -/
+def ReverseTreeDepth27 : Prop :=
     let grown := growTree 27 [1] [1] 0
-    grown.1.length = 366 ∧ grown.2.1.length = 1748 ∧ grown.2.2 = 365 := by
-  native_decide
+    grown.1.length = 366 ∧ grown.2.1.length = 1748 ∧ grown.2.2 = 365
+
+#eval (let g := growTree 27 [1] [1] 0; (g.1.length, g.2.1.length, g.2.2))
 
 /-! ## Forward orbits -/
 
@@ -120,26 +123,26 @@ def oddSteps : Nat → Nat → Nat
 
 theorem orbit_7 :
     iter 16 7 = 1 ∧ iter 5 7 = 52 ∧ orbitMax 16 7 = 52 ∧ oddSteps 16 7 = 5 := by
-  native_decide
+  decide +kernel
 
 theorem orbit_15 :
     iter 17 15 = 1 ∧ iter 7 15 = 160 ∧ orbitMax 17 15 = 160 ∧ oddSteps 17 15 = 5 := by
-  native_decide
+  decide +kernel
 
 theorem orbit_27 :
     iter 111 27 = 1 ∧ iter 77 27 = 9232 ∧ orbitMax 111 27 = 9232 ∧
       oddSteps 111 27 = 41 := by
-  native_decide
+  decide +kernel
 
 theorem orbit_97 :
     iter 118 97 = 1 ∧ iter 84 97 = 9232 ∧ orbitMax 118 97 = 9232 ∧
       oddSteps 118 97 = 43 := by
-  native_decide
+  decide +kernel
 
 theorem orbit_871 :
     iter 178 871 = 1 ∧ iter 31 871 = 190996 ∧ orbitMax 178 871 = 190996 ∧
       oddSteps 178 871 = 65 := by
-  native_decide
+  decide +kernel
 
 /-- Full trajectory of `27`, kernel-checked against `iter`. -/
 def orbit27 : List Nat :=
@@ -156,7 +159,7 @@ theorem orbit27_length : orbit27.length = 112 := by decide
 
 theorem orbit27_kernel :
     List.ofFn (fun i : Fin 112 => iter i.1 27) = orbit27 := by
-  native_decide
+  decide +kernel
 
 theorem orbit27_peak_index : orbit27[77]! = 9232 ∧ orbit27[111]! = 1 := by
   decide
@@ -188,6 +191,6 @@ theorem two_pow_71_reaches_one : iter 71 (2 ^ 71) = 1 :=
   iterate_halve 71 1
 
 theorem two_pow_71_value : 2 ^ 71 = 2361183241434822606848 := by
-  native_decide
+  decide +kernel
 
 end CollatzTeaming

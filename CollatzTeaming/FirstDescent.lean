@@ -21,10 +21,10 @@ def staysAbove (n cap : Nat) : Bool :=
 
 theorem descent_27 :
     iter 96 27 = 23 ∧ 23 < 27 ∧ staysAbove 27 96 = true ∧ iter 111 27 = 1 := by
-  native_decide
+  decide +kernel
 
 theorem descent_703 :
     iter 132 703 < 703 ∧ staysAbove 703 132 = true := by
-  native_decide
+  decide +kernel
 
 end CollatzTeaming

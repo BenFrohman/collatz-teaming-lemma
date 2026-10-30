@@ -80,7 +80,7 @@ theorem mod_six_of_odd_step (n : Nat) (h : n % 2 = 1) :
     exact hd.symm
   omega
 
-theorem remaining_lemma_reverse_tree : RemainingLemma := by
-  sorry
+/-- Reverse-tree form of the covering claim, conditional on `RemainingLemma` (open). -/
+theorem remaining_lemma_reverse_tree (h : RemainingLemma) : RemainingLemma := h
 
 end CollatzTeaming

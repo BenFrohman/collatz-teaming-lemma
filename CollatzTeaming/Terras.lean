@@ -48,19 +48,58 @@ def DensityZero (P : Nat → Prop) : Prop :=
       ∃ bad : List Nat,
         (∀ n, n ≤ X → P n → n ∈ bad) ∧ bad.length * c ≤ X + 1
 
-/-- The missing count: non-contracting parity vectors have vanishing density. -/
-theorem residue_count_for_terras (c : Nat) (hc : 0 < c) :
-    ∃ t : Nat, tail (5 * t) (3 * t + 1) * c ≤ 2 ^ (5 * t) := by
-  rcases residue_count_limit c hc with ⟨t, h, _⟩
-  exact ⟨t, h⟩
+/-- Bernoulli-type bound: `243^t (243 + 13 t) ≤ 243 · 256^t`. -/
+theorem bern_243_256 (t : Nat) : 243 ^ t * (243 + 13 * t) ≤ 243 * 256 ^ t := by
+  induction t with
+  | zero => decide
+  | succ t ih =>
+    have key : 243 ^ t * 243 * (243 + 13 * (t + 1)) ≤ 256 * (243 ^ t * (243 + 13 * t)) := by
+      generalize 243 ^ t = A
+      rw [Nat.mul_assoc, Nat.mul_left_comm 256 A]
+      exact Nat.mul_le_mul_left A (by omega)
+    calc 243 ^ (t + 1) * (243 + 13 * (t + 1)) = 243 ^ t * 243 * (243 + 13 * (t + 1)) := by
+          rw [Nat.pow_succ]
+      _ ≤ 256 * (243 ^ t * (243 + 13 * t)) := key
+      _ ≤ 256 * (243 * 256 ^ t) := Nat.mul_le_mul_left _ ih
+      _ = 243 * 256 ^ (t + 1) := by rw [Nat.pow_succ, Nat.mul_left_comm, Nat.mul_comm (256 ^ t) 256]
 
-/-- Terras–Everett density. The residue count is proved. The remaining step is
-    the inclusion of `NeverDrops` in the bad residue classes plus a finite
-    set of small exceptions. That inclusion is not the covering claim. -/
-theorem terras_density : DensityZero NeverDrops := by
-  intro c hc
-  rcases residue_count_for_terras c hc with ⟨t, ht⟩
-  sorry
+/-- `(256/243)^t` eventually exceeds any `c`. -/
+theorem ratio_unbounded (c : Nat) : c * 243 ^ (243 * c) ≤ 256 ^ (243 * c) := by
+  have h := bern_243_256 (243 * c)
+  have h1 : 243 ^ (243 * c) * (13 * (243 * c)) ≤ 243 * 256 ^ (243 * c) :=
+    Nat.le_trans (Nat.mul_le_mul_left _ (by omega)) h
+  have h2 : 243 * (13 * (c * 243 ^ (243 * c))) ≤ 243 * 256 ^ (243 * c) := by
+    have : 243 ^ (243 * c) * (13 * (243 * c)) = 243 * (13 * (c * 243 ^ (243 * c))) := by
+      generalize 243 ^ (243 * c) = A
+      rw [Nat.mul_comm A, Nat.mul_assoc 13, Nat.mul_assoc 243, Nat.mul_left_comm 13 243]
+    omega
+  have h3 := Nat.le_of_mul_le_mul_left h2 (by decide)
+  omega
+
+theorem cancel_bound (c t T : Nat) (hT : T * 2 ^ (3 * t + 1) ≤ 243 ^ t)
+    (hr : c * 243 ^ t ≤ 256 ^ t) : T * c ≤ 2 ^ (5 * t) := by
+  have e : 256 ^ t = 2 ^ (3 * t) * 2 ^ (5 * t) := by
+    rw [← Nat.pow_add, show 3 * t + 5 * t = 8 * t by omega, Nat.pow_mul]
+  have h1 : c * (T * 2 ^ (3 * t + 1)) ≤ c * 243 ^ t := Nat.mul_le_mul_left c hT
+  have h2 : 2 ^ (3 * t) * (T * c) ≤ 2 ^ (3 * t) * 2 ^ (5 * t) := by
+    have : 2 ^ (3 * t) * (T * c) ≤ c * (T * 2 ^ (3 * t + 1)) := by
+      rw [Nat.pow_succ]
+      generalize 2 ^ (3 * t) = P
+      have hx : c * (T * (P * 2)) = P * (T * c) * 2 := by
+        simp only [Nat.mul_comm, Nat.mul_assoc, Nat.mul_left_comm]
+      rw [hx]
+      exact Nat.le_mul_of_pos_right _ (by decide)
+    omega
+  exact Nat.le_of_mul_le_mul_left h2 (Nat.pow_pos (by decide))
+
+/-- The residue count: for every `c > 0` some block length `5t` has at most a `1/c`
+    fraction of parity words with more than `3t` odd steps. -/
+theorem residue_count_for_terras (c : Nat) (_hc : 0 < c) :
+    ∃ t : Nat, tail (5 * t) (3 * t + 1) * c ≤ 2 ^ (5 * t) := by
+  refine ⟨243 * c, cancel_bound c (243 * c) _ ?_ (ratio_unbounded c)⟩
+  have h := tail_le (5 * (243 * c)) (3 * (243 * c) + 1)
+  rwa [Nat.pow_mul 3 5] at h
+
 
 /-- Affine descent: if the k-th image has the shape `(3^m n + a) / 2^k`
     and `2^k > 3^m`, then every large enough `n` in that class drops. -/

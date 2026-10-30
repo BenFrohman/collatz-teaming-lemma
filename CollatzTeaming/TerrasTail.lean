@@ -27,10 +27,10 @@ theorem two_le_three_pow (k : Nat) : 2 ^ k ≤ 3 ^ k := by
   | zero => simp
   | succ k ih =>
     calc
-      2 ^ (k + 1) = 2 * 2 ^ k := by rw [Nat.pow_succ]
+      2 ^ (k + 1) = 2 * 2 ^ k := by rw [Nat.pow_succ, Nat.mul_comm]
       _ ≤ 3 * 2 ^ k := Nat.mul_le_mul_right _ (by decide)
       _ ≤ 3 * 3 ^ k := Nat.mul_le_mul_left _ ih
-      _ = 3 ^ (k + 1) := by rw [Nat.pow_succ]
+      _ = 3 ^ (k + 1) := by rw [Nat.pow_succ, Nat.mul_comm]
 
 /-- Generating bound: each one is weighted by `2`, and `(1 + 2) ^ k = 3 ^ k`. -/
 theorem gen_bound (k m : Nat) : 2 ^ m * badCount k m ≤ 3 ^ k := by
@@ -42,7 +42,7 @@ theorem gen_bound (k m : Nat) : 2 ^ m * badCount k m ≤ 3 ^ k := by
   | succ k ih =>
     cases m with
     | zero =>
-      rw [badCount_zero_right]
+      rw [badCount_zero_right, Nat.pow_zero, Nat.one_mul]
       exact two_le_three_pow (k + 1)
     | succ m =>
       have h1 : 2 ^ m * badCount k m ≤ 3 ^ k := ih m
@@ -53,7 +53,7 @@ theorem gen_bound (k m : Nat) : 2 ^ m * badCount k m ≤ 3 ^ k := by
         _ = 2 ^ (m + 1) * badCount k m + 2 ^ (m + 1) * badCount k (m + 1) := by
               rw [Nat.mul_add]
         _ = 2 * (2 ^ m * badCount k m) + 2 ^ (m + 1) * badCount k (m + 1) := by
-              rw [Nat.pow_succ, Nat.mul_assoc]
+              rw [Nat.pow_succ 2 m, Nat.mul_comm (2 ^ m) 2, Nat.mul_assoc]
         _ ≤ 2 * 3 ^ k + 3 ^ k := by
               apply Nat.add_le_add
               · exact Nat.mul_le_mul_left 2 h1
@@ -66,7 +66,9 @@ theorem three_five_lt_two_eight : 243 < 256 := by decide
 theorem block_tail (t : Nat) :
     2 ^ (3 * t) * badCount (5 * t) (3 * t) ≤ 243 ^ t := by
   have h := gen_bound (5 * t) (3 * t)
-  simpa [Nat.pow_mul, Nat.mul_comm] using h
+  have e : 3 ^ (5 * t) = 243 ^ t := by rw [Nat.pow_mul]
+  rw [e] at h
+  exact h
 
 theorem all_words (t : Nat) : 2 ^ (5 * t) = 32 ^ t := by
   simpa [Nat.pow_mul] using rfl
@@ -76,14 +78,15 @@ theorem tail_ratio (t : Nat) :
     badCount (5 * t) (3 * t) * 32 ^ t ≤ 243 ^ t * 4 ^ t := by
   have h := block_tail t
   have hsplit : 2 ^ (5 * t) = 2 ^ (3 * t) * 2 ^ (2 * t) := by
-    rw [← Nat.pow_add, Nat.add_mul]
-    simp
+    rw [← Nat.pow_add]
+    congr 1
+    omega
   calc
     badCount (5 * t) (3 * t) * 32 ^ t
         = badCount (5 * t) (3 * t) * 2 ^ (5 * t) := by rw [all_words]
     _ = badCount (5 * t) (3 * t) * (2 ^ (3 * t) * 2 ^ (2 * t)) := by rw [hsplit]
     _ = (2 ^ (3 * t) * badCount (5 * t) (3 * t)) * 2 ^ (2 * t) := by
-          rw [Nat.mul_comm (badCount _ _) (2 ^ (3 * t)), Nat.mul_assoc]
+          rw [← Nat.mul_assoc, Nat.mul_comm (badCount _ _) (2 ^ (3 * t))]
     _ ≤ 243 ^ t * 2 ^ (2 * t) := Nat.mul_le_mul_right _ h
     _ = 243 ^ t * 4 ^ t := by rw [Nat.pow_mul]
 

@@ -34,14 +34,17 @@ That sentence is the Collatz conjecture on the positive integers. Lean records t
 - Predicates D (dichotomy) and R (reduction to the two Δs).
 - The definition of inverse-residue teams.
 - `RemainingLemma ↔ CollatzConjecture` by definition.
-- Scene certificates in `CollatzTeaming/Kernel.lean`: inverse parent rule, the amber edge, five finite orbits, and the halving family. These do not inhabit `RemainingLemma`.
+- Proved by `decide +kernel`: the scene certificates in `CollatzTeaming/Kernel.lean`: inverse parent rule, the amber edge, five finite orbits, and the halving family. These do not inhabit `RemainingLemma`.
 
 ## What is not certified
 
+`RemainingLemma` is open (it is the Collatz conjecture). It is never assumed globally: every result that needs it takes it as an explicit argument, e.g.
+
 ```lean
-theorem remaining_lemma : RemainingLemma := by
-  sorry
+theorem remaining_lemma (h : RemainingLemma) : RemainingLemma := h
 ```
+
+`lake build` is clean with 0 `sorry` and no custom axioms; `collectAxioms` over all theorems reports only `propext`, `Classical.choice`, `Quot.sound`. The depth-27 inverse-tree counts are the named Prop `ReverseTreeDepth27`, checked by `#eval`, not by a kernel proof.
 
 Lemma 1 (`Δ_cyc=∅`), Lemma 2 (`Δ_div=∅`), and Lemma L stay open.
 A failed Lyapunov (`V=n`, `V=log n` at 27→41) is not Lemma 2 and is not `¬`Lemma 2.

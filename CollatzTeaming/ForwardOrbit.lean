@@ -44,7 +44,8 @@ theorem forward_odd_pred (m : Nat) (h : m % 6 = 4) :
     forward (oddPred m) 1 = m := by
   simp [forward, C_odd_pred m h]
 
-theorem remaining_lemma_forward : RemainingLemmaForward := by
-  sorry
+/-- Forward form of the covering claim, conditional on `RemainingLemma` (open). -/
+theorem remaining_lemma_forward (h : RemainingLemma) : RemainingLemmaForward :=
+  remaining_forward_iff_reverse.mpr h
 
 end CollatzTeaming
