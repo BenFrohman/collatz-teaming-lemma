@@ -1,6 +1,7 @@
 # Collatz teaming lemma — Lean skeleton
 
-[![lean.yml](https://github.com/BenFrohman/collatz-teaming-lemma/actions/workflows/lean.yml/badge.svg?branch=main)](https://github.com/BenFrohman/collatz-teaming-lemma/actions/workflows/lean.yml)
+[![Lean certificate](https://github.com/BenFrohman/collatz-teaming-lemma/actions/workflows/certify.yml/badge.svg?branch=main)](https://github.com/BenFrohman/collatz-teaming-lemma/actions/workflows/certify.yml)
+[![Lean 4](https://github.com/BenFrohman/collatz-teaming-lemma/actions/workflows/lean.yml/badge.svg?branch=main)](https://github.com/BenFrohman/collatz-teaming-lemma/actions/workflows/lean.yml)
 
 <!-- ZENODO-PROVENANCE-HEADER -->
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23629486.svg)](https://doi.org/10.5281/zenodo.23629486)

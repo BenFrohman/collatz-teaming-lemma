@@ -18,7 +18,7 @@ jobs:
       - name: Build
         run: |
           lake build
-          lake build CollatzTeaming.ParentRule CollatzTeaming.Scenes CollatzTeaming.TerrasDensity
+          lake build CollatzTeaming.ParentRule CollatzTeaming.Scenes CollatzTeaming.TerrasDensity CollatzTeaming.Derived
       - name: Axiom audit
         run: |
           set -o pipefail

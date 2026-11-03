@@ -56,28 +56,28 @@ theorem orbit_7_reaches : iter 16 7 = 1 := by
   decide
 
 theorem orbit_27_peak : iter 77 27 = 9232 := by
-  decide
+  decide +kernel
 
 theorem orbit_27_reaches : iter 111 27 = 1 := by
-  decide
+  decide +kernel
 
 theorem orbit_97_peak : iter 84 97 = 9232 := by
-  decide
+  decide +kernel
 
 theorem orbit_97_reaches : iter 118 97 = 1 := by
-  decide
+  decide +kernel
 
 theorem orbit_871_peak : iter 31 871 = 190996 := by
   decide
 
 theorem orbit_871_reaches : iter 178 871 = 1 := by
-  decide
+  decide +kernel
 
 theorem orbit_6171_peak : iter 78 6171 = 975400 := by
-  decide
+  decide +kernel
 
 theorem orbit_6171_reaches : iter 261 6171 = 1 := by
-  decide
+  decide +kernel
 
 /-- `2 ^ 71` falls by 71 halvings. Induction, not a table. -/
 theorem orbit_two_pow_71 : iter 71 (2 ^ 71) = 1 :=
@@ -86,9 +86,22 @@ theorem orbit_two_pow_71 : iter 71 (2 ^ 71) = 1 :=
 theorem two_pow_71_value : 2 ^ 71 = 2361183241434822606848 := by
   decide
 
-/-- These certificates do not discharge the covering claim. -/
-theorem derived_does_not_close_collatz :
-    (iter 111 27 = 1) ≠ CollatzConjecture := by
-  decide
+/-!
+Removed (2026-11-03): the former theorem
+
+    theorem derived_does_not_close_collatz :
+        (iter 111 27 = 1) ≠ CollatzConjecture
+
+was intended to say "these finite orbit checks do not prove the Collatz
+conjecture". It does not formalize that. Since `iter 111 27 = 1` is proved
+above (`orbit_27_reaches`), it is equal to `True` as a proposition (by
+`propext`), so the statement is equivalent to `True ≠ CollatzConjecture`,
+i.e. to `¬ CollatzConjecture`. It is therefore unprovable unless the
+conjecture is false, and false if the conjecture is true. The intended
+meta-level claim (that finitely many orbit certificates do not entail the
+conjecture) is about provability and is not expressible as a Prop of this form.
+It is recorded here as a comment only; nothing in this file proves or refutes
+`CollatzConjecture`.
+-/
 
 end CollatzTeaming
