@@ -15,6 +15,8 @@
 \small \texttt{frohmanbenjamin@gmail.com}}
 \date{Origin Provenance: September 20, 2026 (15:47:26 CDT) \\ \small Repository: \texttt{BenFrohman/collatz-teaming-lemma} \quad|\quad Licensed under Apache-2.0}
 
+\usepackage{longtable}
+\usepackage{url}
 \begin{document}
 \maketitle
 
@@ -31,4 +33,124 @@ We formalize in Lean 4 (\texttt{CollatzTeaming}, 23 modules) the inverse-residue
 
 \section*{License and Copyright}
 Copyright \copyright\ 2026 Benjamin Stanley Frohman. All rights reserved. Licensed under the Apache License, Version 2.0 (\url{http://www.apache.org/licenses/LICENSE-2.0}).
+\appendix
+\section{Verification certificate}\label{app:verification-certificate}
+
+The formal development was machine-checked as follows.
+
+{\raggedright
+\begin{itemize}
+\item Repository:\\ {\footnotesize\url{https://github.com/BenFrohman/collatz-teaming-lemma}}
+\item Verified commit:\\ {\footnotesize\texttt{6175a6210afd92fafccd9d58dec376714c72b299}}
+\item Lean toolchain: \texttt{leanprover/lean4:v4.34.0}
+\item Mathlib: none (the development depends only on Lean core)
+\item Continuous integration run (build, axiom audit, \texttt{sorry}/\texttt{axiom} scan; passed):\\ {\footnotesize\url{https://github.com/BenFrohman/collatz-teaming-lemma/actions/runs/41574090741}}
+\item SHA-256 of the GitHub source tarball of the verified commit, downloaded twice with identical result:\\ {\footnotesize\url{https://github.com/BenFrohman/collatz-teaming-lemma/archive/6175a6210afd92fafccd9d58dec376714c72b299.tar.gz}}\\
+{\footnotesize\texttt{c01d01098b4153face0d1a1788f5ba01b184626342817c7bb4542054b165e548}}
+\end{itemize}\par}
+
+The tarball hash refers to the verified commit rather than to a release tag, since a document cannot contain the hash of an archive that includes itself. The Lean sources are unchanged between that commit and the release tag.
+
+\textbf{The development contains no \texttt{sorry} and no user-declared axioms.} Every one of the 92 theorems and lemmas listed below depends only on Lean's standard axioms \texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound} (or on none). The table is the verbatim output of \texttt{lake env lean AxiomAudit.lean} (\texttt{\#print axioms}) on the verified commit.
+
+{\footnotesize
+\begin{longtable}{p{0.55\linewidth}p{0.38\linewidth}}
+\hline
+Lean declaration & \texttt{\#print axioms} \\
+\hline\endhead
+\path{CollatzTeaming.remaining_lemma_from_assumption} & \texttt{(no axioms)} \\
+\path{CollatzTeaming.T_even} & \texttt{[propext]} \\
+\path{CollatzTeaming.T_four} & \texttt{(no axioms)} \\
+\path{CollatzTeaming.T_odd} & \texttt{[propext]} \\
+\path{CollatzTeaming.T_one} & \texttt{(no axioms)} \\
+\path{CollatzTeaming.T_two} & \texttt{(no axioms)} \\
+\path{CollatzTeaming.even_double} & \texttt{[propext]} \\
+\path{CollatzTeaming.iter_succ} & \texttt{(no axioms)} \\
+\path{CollatzTeaming.iter_succ'} & \texttt{(no axioms)} \\
+\path{CollatzTeaming.iter_zero} & \texttt{(no axioms)} \\
+\path{CollatzTeaming.iterate_halve} & \texttt{[propext]} \\
+\path{CollatzTeaming.team_maps_to_odd} & \texttt{[propext]} \\
+\path{CollatzTeaming.trivial_cycle} & \texttt{(no axioms)} \\
+\path{CollatzTeaming.two_mul_even} & \texttt{[propext]} \\
+\path{CollatzTeaming.block_n3_k2} & \texttt{(no axioms)} \\
+\path{CollatzTeaming.frohman_block_n3_k2} & \texttt{(no axioms)} \\
+\path{CollatzTeaming.frohman_odd_mod4} & \texttt{[propext, Quot.sound]} \\
+\path{CollatzTeaming.frohman_trivial_block} & \texttt{(no axioms)} \\
+\path{CollatzTeaming.odd_mod4} & \texttt{[propext, Quot.sound]} \\
+\path{CollatzTeaming.trivial_block} & \texttt{(no axioms)} \\
+\path{CollatzTeaming.forward_even_branch} & \texttt{[propext]} \\
+\path{CollatzTeaming.forward_odd_pred} & \texttt{[propext, Quot.sound]} \\
+\path{CollatzTeaming.forward_one_double} & \texttt{[propext]} \\
+\path{CollatzTeaming.one_reaches_one} & \texttt{(no axioms)} \\
+\path{CollatzTeaming.reaches_one_iff_in_reverse_tree} & \texttt{(no axioms)} \\
+\path{CollatzTeaming.remaining_forward_iff_reverse} & \texttt{(no axioms)} \\
+\path{CollatzTeaming.remaining_lemma_forward} & \texttt{(no axioms)} \\
+\path{CollatzTeaming.inclusion_not_binomial_tail} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{CollatzTeaming.terras_inclusion} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{CollatzTeaming.amber_edge} & \texttt{[propext, Quot.sound]} \\
+\path{CollatzTeaming.doubling_parent} & \texttt{[propext]} \\
+\path{CollatzTeaming.first_odd_parent} & \texttt{[propext, Quot.sound]} \\
+\path{CollatzTeaming.odd_inverse_parent} & \texttt{[propext]} \\
+\path{CollatzTeaming.odd_parent_sixteen} & \texttt{[propext, Quot.sound]} \\
+\path{CollatzTeaming.orbit27_kernel} & \texttt{(no axioms)} \\
+\path{CollatzTeaming.orbit27_length} & \texttt{(no axioms)} \\
+\path{CollatzTeaming.orbit27_peak_index} & \texttt{[propext]} \\
+\path{CollatzTeaming.orbit_15} & \texttt{(no axioms)} \\
+\path{CollatzTeaming.orbit_27} & \texttt{(no axioms)} \\
+\path{CollatzTeaming.orbit_7} & \texttt{(no axioms)} \\
+\path{CollatzTeaming.orbit_871} & \texttt{(no axioms)} \\
+\path{CollatzTeaming.orbit_97} & \texttt{(no axioms)} \\
+\path{CollatzTeaming.parentsOf_spec} & \texttt{[propext, Quot.sound]} \\
+\path{CollatzTeaming.syracuse_five} & \texttt{(no axioms)} \\
+\path{CollatzTeaming.syracuse_not_injective} & \texttt{(no axioms)} \\
+\path{CollatzTeaming.syracuse_one} & \texttt{(no axioms)} \\
+\path{CollatzTeaming.two_pow_71_reaches_one} & \texttt{[propext]} \\
+\path{CollatzTeaming.two_pow_71_value} & \texttt{(no axioms)} \\
+\path{CollatzTeaming.C0_closes_one} & \texttt{(no axioms)} \\
+\path{CollatzTeaming.reaches_one_of_trivial} & \texttt{(no axioms)} \\
+\path{CollatzTeaming.remaining_lemma} & \texttt{(no axioms)} \\
+\path{CollatzTeaming.remaining_lemma_iff_collatz} & \texttt{(no axioms)} \\
+\path{CollatzTeaming.covering_claim_def} & \texttt{(no axioms)} \\
+\path{CollatzTeaming.covering_from_assumption} & \texttt{(no axioms)} \\
+\path{CollatzTeaming.C_double} & \texttt{[propext]} \\
+\path{CollatzTeaming.C_odd_pred} & \texttt{[propext, Quot.sound]} \\
+\path{CollatzTeaming.div_add_mod_six} & \texttt{[propext]} \\
+\path{CollatzTeaming.even_preimage} & \texttt{[propext]} \\
+\path{CollatzTeaming.four_le_of_mod_six} & \texttt{[propext, Quot.sound]} \\
+\path{CollatzTeaming.mod_six_of_odd_step} & \texttt{[propext, Quot.sound]} \\
+\path{CollatzTeaming.oddPred_eq} & \texttt{[propext, Quot.sound]} \\
+\path{CollatzTeaming.oddPred_odd} & \texttt{[propext, Quot.sound]} \\
+\path{CollatzTeaming.oddPredecessor_of_mod_six} & \texttt{[propext, Quot.sound]} \\
+\path{CollatzTeaming.one_in_reverse_tree} & \texttt{(no axioms)} \\
+\path{CollatzTeaming.remaining_lemma_reverse_tree} & \texttt{(no axioms)} \\
+\path{CollatzTeaming.nat_mul_eq_one} & \texttt{[propext]} \\
+\path{CollatzTeaming.steiner_L2} & \texttt{(no axioms)} \\
+\path{CollatzTeaming.steiner_L_eq_two} & \texttt{[propext, Quot.sound]} \\
+\path{CollatzTeaming.steiner_factors} & \texttt{[propext]} \\
+\path{CollatzTeaming.steiner_one_cycle} & \texttt{[propext, Quot.sound]} \\
+\path{CollatzTeaming.tail_le} & \texttt{[propext, Quot.sound]} \\
+\path{CollatzTeaming.tail_zero} & \texttt{(no axioms)} \\
+\path{CollatzTeaming.two_pow_le_three_pow} & \texttt{(no axioms)} \\
+\path{CollatzTeaming.all_words} & \texttt{[propext]} \\
+\path{CollatzTeaming.badCount_zero_left} & \texttt{(no axioms)} \\
+\path{CollatzTeaming.badCount_zero_right} & \texttt{(no axioms)} \\
+\path{CollatzTeaming.block_tail} & \texttt{[propext, Quot.sound]} \\
+\path{CollatzTeaming.gen_bound} & \texttt{[propext, Quot.sound]} \\
+\path{CollatzTeaming.tail_ratio} & \texttt{[propext, Quot.sound]} \\
+\path{CollatzTeaming.three_five_lt_two_eight} & \texttt{(no axioms)} \\
+\path{CollatzTeaming.two_le_three_pow} & \texttt{[propext, Quot.sound]} \\
+\path{CollatzTeaming.bern_243_256} & \texttt{[propext, Quot.sound]} \\
+\path{CollatzTeaming.cancel_bound} & \texttt{[propext, Quot.sound]} \\
+\path{CollatzTeaming.drop_of_affine} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{CollatzTeaming.neverDrops_not_in_tree} & \texttt{[propext, Quot.sound]} \\
+\path{CollatzTeaming.not_neverDrops_iff} & \texttt{[propext, Classical.choice, Quot.sound]} \\
+\path{CollatzTeaming.ratio_unbounded} & \texttt{[propext, Quot.sound]} \\
+\path{CollatzTeaming.residue_count_for_terras} & \texttt{[propext, Quot.sound]} \\
+\path{CollatzTeaming.stopping_weaker_than_tree} & \texttt{[propext, Quot.sound]} \\
+\path{CollatzTeaming.Block.kpos} & \texttt{(no axioms)} \\
+\path{CollatzTeaming.Block.odd} & \texttt{(no axioms)} \\
+\path{CollatzTeaming.blockCount_eq} & \texttt{(no axioms)} \\
+\hline
+\end{longtable}}
+
 \end{document}
