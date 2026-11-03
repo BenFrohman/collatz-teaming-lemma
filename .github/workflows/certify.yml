@@ -16,18 +16,24 @@ jobs:
           echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
 
       - name: Build
-        run: lake build
+        run: |
+          lake build
+          lake build CollatzTeaming.ParentRule CollatzTeaming.Scenes CollatzTeaming.TerrasDensity
       - name: Axiom audit
         run: |
           set -o pipefail
-          lake env lean AxiomAudit.lean 2>&1 | awk '/^[ \t]/{sub(/^[ \t]+/," ");printf "%s",$0;next} NR>1{print ""} {printf "%s",$0} END{print ""}' | tee axioms.txt
+          for f in AxiomAudit*.lean; do
+            lake env lean "$f" 2>&1 | awk '/^[ \t]/{sub(/^[ \t]+/," ");printf "%s",$0;next} NR>1{print ""} {printf "%s",$0} END{print ""}' | tee "axioms_${f%.lean}.txt"
+          done
       - name: Check axioms are standard only
         run: |
-          test -s axioms.txt
           OK='depends on axioms: \[(propext|Classical\.choice|Quot\.sound)(, (propext|Classical\.choice|Quot\.sound))*\]$|does not depend on any axioms$'
-          n=$(grep -c "^#print axioms" AxiomAudit.lean); m=$(grep -E "^'" axioms.txt | grep -cE "$OK" || true)
-          echo "audited $n declarations, $m with standard axioms only"
-          if [ "$n" -ne "$m" ] || grep -iE "error|warning: declaration uses" axioms.txt; then
-            echo "Non-standard axiom output:"; cat axioms.txt; exit 1; fi
+          for f in AxiomAudit*.lean; do
+            a="axioms_${f%.lean}.txt"; test -s "$a"
+            n=$(grep -c "^#print axioms" "$f"); m=$(grep -E "^'" "$a" | grep -cE "$OK" || true)
+            echo "$f: audited $n declarations, $m with standard axioms only"
+            if [ "$n" -ne "$m" ] || grep -iE "error|warning: declaration uses" "$a"; then
+              echo "Non-standard axiom output:"; cat "$a"; exit 1; fi
+          done
       - name: No sorry / no axiom declarations
         run: python3 scripts/check_no_sorry.py

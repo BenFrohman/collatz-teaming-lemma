@@ -19,3 +19,6 @@ import CollatzTeaming.ForwardOrbit
 import CollatzTeaming.Axiom
 import CollatzTeaming.Replacement
 import CollatzTeaming.Kernel
+import CollatzTeaming.FirstDescent
+import CollatzTeaming.MissingTerm
+import CollatzTeaming.ZeroPath

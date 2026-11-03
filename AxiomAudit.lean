@@ -17,6 +17,9 @@ import CollatzTeaming.Terras
 import CollatzTeaming.TerrasCount
 import CollatzTeaming.TerrasTail
 import CollatzTeaming.Types
+import CollatzTeaming.FirstDescent
+import CollatzTeaming.MissingTerm
+import CollatzTeaming.ZeroPath
 
 #print axioms CollatzTeaming.remaining_lemma_from_assumption
 #print axioms CollatzTeaming.T_even
@@ -110,3 +113,20 @@ import CollatzTeaming.Types
 #print axioms CollatzTeaming.Block.kpos
 #print axioms CollatzTeaming.Block.odd
 #print axioms CollatzTeaming.blockCount_eq
+
+-- Modules added to the root import (certification extension)
+#print axioms CollatzTeaming.descent_27
+#print axioms CollatzTeaming.descent_703
+#print axioms CollatzTeaming.four_reaches_trivial_at_zero
+#print axioms CollatzTeaming.missing_term_type
+#print axioms CollatzTeaming.one_reaches_trivial_at_zero
+#print axioms CollatzTeaming.one_zero_path
+#print axioms CollatzTeaming.reaches_trivial_at_zero
+#print axioms CollatzTeaming.two_reaches_trivial_at_zero
+#print axioms CollatzTeaming.witness_shape_of_remaining
+#print axioms CollatzTeaming.zero_fixed
+#print axioms CollatzTeaming.zero_orbit
+#print axioms CollatzTeaming.zero_path
+#print axioms CollatzTeaming.zero_path_four
+#print axioms CollatzTeaming.zero_path_one
+#print axioms CollatzTeaming.zero_path_two
