@@ -72,3 +72,8 @@ Any argument that assumes every infinite team already falls into `{1,4,2}` in or
 No solution preprint is deposited. A paper titled as a proof of Collatz would be false on the present kernel.
 
 Companions: [the-3n-plus-1-machine](https://github.com/BenFrohman/the-3n-plus-1-machine), [3n-plus-c-cycle-census](https://github.com/BenFrohman/3n-plus-c-cycle-census).
+
+## Zenodo archive
+
+- [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23629485.svg)](https://doi.org/10.5281/zenodo.23629485) Negative Expected Drift Does Not Imply a Unique Attractor at 1: Eliahou Windows, Rhin Linear Forms in Logarithms, and the Collatz Teaming Lemma in Lean 4 — all versions: [10.5281/zenodo.23629485](https://doi.org/10.5281/zenodo.23629485); latest version: [10.5281/zenodo.23629486](https://doi.org/10.5281/zenodo.23629486)
+- [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23867506.svg)](https://doi.org/10.5281/zenodo.23867506) Negative Expected Drift Does Not Imply a Unique Attractor at 1: Eliahou Windows, Rhin Linear Forms in Logarithms, and the Collatz Teaming Lemma in Lean 4 — all versions: [10.5281/zenodo.23867506](https://doi.org/10.5281/zenodo.23867506); latest version: [10.5281/zenodo.23932497](https://doi.org/10.5281/zenodo.23932497)
