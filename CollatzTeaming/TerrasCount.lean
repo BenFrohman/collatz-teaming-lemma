@@ -3,9 +3,16 @@ Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Benjamin Stanley Frohman
 -/
+
 /-
 Pascal tail for Lean 4.34. Nat.pow_succ is a ^ n * a.
 Not the covering claim.
+-/
+
+/-!
+# CollatzTeaming.TerrasCount
+
+Machine-checked Lean 4 module.
 -/
 
 namespace CollatzTeaming

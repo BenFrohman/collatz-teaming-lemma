@@ -3,6 +3,7 @@ Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Benjamin Stanley Frohman
 -/
+
 /-
 Kernel certificates for the two data-backed scenes: the inverse parent rule,
 and five forward orbits. Each closed theorem is checked by the Lean kernel
@@ -12,6 +13,12 @@ This file does not prove `CollatzConjecture`. `remaining_lemma` stays open.
 -/
 
 import CollatzTeaming.Basic
+
+/-!
+# CollatzTeaming.Derived
+
+Machine-checked Lean 4 module.
+-/
 
 namespace CollatzTeaming
 

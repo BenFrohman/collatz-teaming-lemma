@@ -3,12 +3,19 @@ Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Benjamin Stanley Frohman
 -/
+
 /-
 The remaining lemma is definitionally the Collatz covering claim.
 -/
 
 import CollatzTeaming.Basic
 import CollatzTeaming.ReverseTree
+
+/-!
+# CollatzTeaming.Remaining
+
+Machine-checked Lean 4 module.
+-/
 
 namespace CollatzTeaming
 

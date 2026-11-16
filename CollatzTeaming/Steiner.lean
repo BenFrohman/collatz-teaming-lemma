@@ -3,9 +3,16 @@ Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Benjamin Stanley Frohman
 -/
+
 /-
 Steiner 1-cycle equation. Factor 1 by case split, not by omega.
 Not the covering claim.
+-/
+
+/-!
+# CollatzTeaming.Steiner
+
+Machine-checked Lean 4 module.
 -/
 
 namespace CollatzTeaming

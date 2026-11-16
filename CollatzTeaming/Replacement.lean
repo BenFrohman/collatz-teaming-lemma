@@ -3,6 +3,7 @@ Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Benjamin Stanley Frohman
 -/
+
 /-
 Replacement for treating density zero, or the local inverse rules, as an
 inhabitant of the covering claim. No proof of that claim is supplied.
@@ -11,6 +12,12 @@ inhabitant of the covering claim. No proof of that claim is supplied.
 import CollatzTeaming.ReverseTree
 import CollatzTeaming.Axiom
 import CollatzTeaming.Terras
+
+/-!
+# CollatzTeaming.Replacement
+
+Machine-checked Lean 4 module.
+-/
 
 namespace CollatzTeaming
 
