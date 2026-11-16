@@ -1,0 +1,33 @@
+info: [root]: lakefile.lean and lakefile.toml are both present; using lakefile.lean
+✔ [2/22] Built CollatzTeaming.Rhin (281ms)
+✔ [3/22] Built CollatzTeaming.Basic (353ms)
+✔ [4/22] Built CollatzTeaming.BlockMap (344ms)
+✔ [5/22] Built CollatzTeaming.Types (437ms)
+✔ [6/22] Built CollatzTeaming.Steiner (432ms)
+✔ [7/22] Built CollatzTeaming.FirstDescent (321ms)
+✔ [8/22] Built CollatzTeaming.TerrasCount (584ms)
+⚠ [9/22] Built CollatzTeaming.TerrasTail (641ms)
+warning: CollatzTeaming/TerrasTail.lean:81:2: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+✔ [10/22] Built CollatzTeaming.M92 (289ms)
+✔ [11/22] Built CollatzTeaming.ReverseTree (491ms)
+✔ [12/22] Built CollatzTeaming.Axiom (271ms)
+✔ [13/22] Built CollatzTeaming.Remaining (313ms)
+✔ [14/22] Built CollatzTeaming.ZeroPath (325ms)
+✔ [15/22] Built CollatzTeaming.MissingTerm (301ms)
+⚠ [16/22] Built CollatzTeaming.ForwardOrbit (470ms)
+warning: CollatzTeaming/ForwardOrbit.lean:42:17: This simp argument is unused:
+  even_double m
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [forward]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+ℹ [17/22] Built CollatzTeaming.Kernel (770ms)
+info: CollatzTeaming/Kernel.lean:110:0: (366, 1748, 365)
+✔ [18/22] Built CollatzTeaming.Terras (492ms)
+✔ [19/22] Built CollatzTeaming.Inclusion (237ms)
+✔ [20/22] Built CollatzTeaming.Replacement (214ms)
+✔ [21/22] Built CollatzTeaming (163ms)
+Build completed successfully (22 jobs).

@@ -8,6 +8,10 @@
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0006--7068--3718-brightgreen.svg)](https://orcid.org/0009-0006-7068-3718)
 
+## Kernel certificate
+
+[certificates/CERTIFICATE.md](certificates/CERTIFICATE.md): commit `26ee94e`, `leanprover/lean4:v4.34.0`. `lake build` passes; the sorry/axiom scan finds 0 hits; **126 theorems depend only on `propext`, `Classical.choice`, `Quot.sound`**; 20 of 20 modules replayed through the kernel, 0 failures ([CI run](https://github.com/BenFrohman/collatz-teaming-lemma/actions/runs/43939165706)).
+
 > **Author:** Benjamin Stanley Frohman ([ORCID: 0009-0006-7068-3718](https://orcid.org/0009-0006-7068-3718))  
 > **Origin Provenance:** `2026-09-20 15:47:26 CDT (Git Initial Commit)`  
 > **Zenodo Archive & DOI:** [`10.5281/zenodo.23629486`](https://doi.org/10.5281/zenodo.23629486) ([Zenodo Record `23629486`](https://zenodo.org/records/23629486))  
