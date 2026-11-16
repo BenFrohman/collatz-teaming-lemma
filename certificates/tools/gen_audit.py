@@ -5,7 +5,7 @@ declared in them.  Usage: python3 certificates/tools/gen_audit.py OUT.lean MODUL
 import os, subprocess, sys
 out, modlist = sys.argv[1], sys.argv[2]
 files = subprocess.check_output(['git', 'ls-files', '*.lean']).decode().split()
-roots = ['.lake/build/lib/lean', '.lake/build/lib', 'build/lib']
+roots = [next(r for r in ['.lake/build/lib/lean', '.lake/build/lib', 'build/lib'] if os.path.isdir(r))]
 mods = []
 for f in files:
     if f.startswith(('.lake/', 'lake-packages/')) or os.path.basename(f) in ('lakefile.lean',):

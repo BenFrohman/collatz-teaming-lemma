@@ -45,7 +45,7 @@ jobs:
         run: |
           set -o pipefail
           python3 certificates/tools/gen_audit.py cert-out/KernelCertificateAudit.lean cert-out/modules.txt
-          lake env lean cert-out/KernelCertificateAudit.lean > cert-out/axioms.raw.txt 2>&1 || { cat cert-out/axioms.raw.txt; exit 1; }
+          lake env lean cert-out/KernelCertificateAudit.lean > cert-out/axioms.raw.txt 2> cert-out/axioms.stderr.txt || { cat cert-out/axioms.raw.txt cert-out/axioms.stderr.txt; exit 1; }
           python3 certificates/tools/check_audit.py cert-out/axioms.raw.txt > cert-out/axioms.txt || { tail -50 cert-out/axioms.txt; exit 1; }
           tail -1 cert-out/axioms.txt
       - name: External kernel re-check of every module (leanchecker / lean4checker, one module per run)
