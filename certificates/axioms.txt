@@ -1,0 +1,127 @@
+'CollatzTeaming.remaining_lemma_from_assumption' does not depend on any axioms
+'CollatzTeaming.T.eq_1' does not depend on any axioms
+'CollatzTeaming.T_even' depends on axioms: [propext]
+'CollatzTeaming.T_four' does not depend on any axioms
+'CollatzTeaming.T_odd' depends on axioms: [propext]
+'CollatzTeaming.T_one' does not depend on any axioms
+'CollatzTeaming.T_two' does not depend on any axioms
+'CollatzTeaming.even_double' depends on axioms: [propext]
+'CollatzTeaming.iter_succ' does not depend on any axioms
+'CollatzTeaming.iter_succ'' does not depend on any axioms
+'CollatzTeaming.iter_zero' does not depend on any axioms
+'CollatzTeaming.iterate_halve' depends on axioms: [propext]
+'CollatzTeaming.team_maps_to_odd' depends on axioms: [propext]
+'CollatzTeaming.trivial_cycle' does not depend on any axioms
+'CollatzTeaming.two_mul_even' depends on axioms: [propext]
+'CollatzTeaming.block_n3_k2' does not depend on any axioms
+'CollatzTeaming.frohman_block_n3_k2' does not depend on any axioms
+'CollatzTeaming.frohman_odd_mod4' depends on axioms: [propext, Quot.sound]
+'CollatzTeaming.frohman_trivial_block' does not depend on any axioms
+'CollatzTeaming.odd_mod4' depends on axioms: [propext, Quot.sound]
+'CollatzTeaming.trivial_block' does not depend on any axioms
+'CollatzTeaming.descent_27' does not depend on any axioms
+'CollatzTeaming.descent_703' does not depend on any axioms
+'CollatzTeaming.forward.eq_1' does not depend on any axioms
+'CollatzTeaming.forward_even_branch' depends on axioms: [propext]
+'CollatzTeaming.forward_odd_pred' depends on axioms: [propext, Quot.sound]
+'CollatzTeaming.forward_one_double' depends on axioms: [propext]
+'CollatzTeaming.one_reaches_one' does not depend on any axioms
+'CollatzTeaming.reaches_one_iff_in_reverse_tree' does not depend on any axioms
+'CollatzTeaming.remaining_forward_iff_reverse' does not depend on any axioms
+'CollatzTeaming.remaining_lemma_forward' does not depend on any axioms
+'CollatzTeaming.inclusion_not_binomial_tail' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CollatzTeaming.terras_inclusion' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CollatzTeaming.amber_edge' depends on axioms: [propext, Quot.sound]
+'CollatzTeaming.doubling_parent' depends on axioms: [propext]
+'CollatzTeaming.first_odd_parent' depends on axioms: [propext, Quot.sound]
+'CollatzTeaming.oddPred.eq_1' does not depend on any axioms
+'CollatzTeaming.odd_inverse_parent' depends on axioms: [propext]
+'CollatzTeaming.odd_parent_sixteen' depends on axioms: [propext, Quot.sound]
+'CollatzTeaming.orbit27_kernel' does not depend on any axioms
+'CollatzTeaming.orbit27_length' does not depend on any axioms
+'CollatzTeaming.orbit27_peak_index' depends on axioms: [propext]
+'CollatzTeaming.orbit_15' does not depend on any axioms
+'CollatzTeaming.orbit_27' does not depend on any axioms
+'CollatzTeaming.orbit_7' does not depend on any axioms
+'CollatzTeaming.orbit_871' does not depend on any axioms
+'CollatzTeaming.orbit_97' does not depend on any axioms
+'CollatzTeaming.parentsOf_spec' depends on axioms: [propext, Quot.sound]
+'CollatzTeaming.syracuse_five' does not depend on any axioms
+'CollatzTeaming.syracuse_not_injective' does not depend on any axioms
+'CollatzTeaming.syracuse_one' does not depend on any axioms
+'CollatzTeaming.two_pow_71_reaches_one' depends on axioms: [propext]
+'CollatzTeaming.two_pow_71_value' does not depend on any axioms
+'CollatzTeaming.C0_closes_one' does not depend on any axioms
+'CollatzTeaming.missing_term_type' does not depend on any axioms
+'CollatzTeaming.witness_shape_of_remaining' does not depend on any axioms
+'CollatzTeaming.reaches_one_of_trivial' does not depend on any axioms
+'CollatzTeaming.remaining_lemma' does not depend on any axioms
+'CollatzTeaming.remaining_lemma_iff_collatz' does not depend on any axioms
+'CollatzTeaming.covering_claim_def' does not depend on any axioms
+'CollatzTeaming.covering_from_assumption' does not depend on any axioms
+'CollatzTeaming.C_double' depends on axioms: [propext]
+'CollatzTeaming.C_odd_pred' depends on axioms: [propext, Quot.sound]
+'CollatzTeaming.div_add_mod_six' depends on axioms: [propext]
+'CollatzTeaming.even_preimage' depends on axioms: [propext]
+'CollatzTeaming.four_le_of_mod_six' depends on axioms: [propext, Quot.sound]
+'CollatzTeaming.mod_six_of_odd_step' depends on axioms: [propext, Quot.sound]
+'CollatzTeaming.oddPred_eq' depends on axioms: [propext, Quot.sound]
+'CollatzTeaming.oddPred_odd' depends on axioms: [propext, Quot.sound]
+'CollatzTeaming.oddPredecessor_of_mod_six' depends on axioms: [propext, Quot.sound]
+'CollatzTeaming.one_in_reverse_tree' does not depend on any axioms
+'CollatzTeaming.remaining_lemma_reverse_tree' does not depend on any axioms
+'CollatzTeaming.nat_mul_eq_one' depends on axioms: [propext]
+'CollatzTeaming.steiner_L2' does not depend on any axioms
+'CollatzTeaming.steiner_L_eq_two' depends on axioms: [propext, Quot.sound]
+'CollatzTeaming.steiner_factors' depends on axioms: [propext]
+'CollatzTeaming.steiner_one_cycle' depends on axioms: [propext, Quot.sound]
+'CollatzTeaming.bern_243_256' depends on axioms: [propext, Quot.sound]
+'CollatzTeaming.cancel_bound' depends on axioms: [propext, Quot.sound]
+'CollatzTeaming.drop_of_affine' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CollatzTeaming.iter.eq_1' does not depend on any axioms
+'CollatzTeaming.iter.eq_2' does not depend on any axioms
+'CollatzTeaming.iter.eq_def' does not depend on any axioms
+'CollatzTeaming.neverDrops_not_in_tree' depends on axioms: [propext, Quot.sound]
+'CollatzTeaming.not_neverDrops_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CollatzTeaming.ratio_unbounded' depends on axioms: [propext, Quot.sound]
+'CollatzTeaming.residue_count_for_terras' depends on axioms: [propext, Quot.sound]
+'CollatzTeaming.stopping_weaker_than_tree' depends on axioms: [propext, Quot.sound]
+'CollatzTeaming.tail.eq_1' does not depend on any axioms
+'CollatzTeaming.tail.eq_2' does not depend on any axioms
+'CollatzTeaming.tail.eq_3' does not depend on any axioms
+'CollatzTeaming.tail.eq_4' does not depend on any axioms
+'CollatzTeaming.tail.eq_def' does not depend on any axioms
+'CollatzTeaming.tail_le' depends on axioms: [propext, Quot.sound]
+'CollatzTeaming.tail_zero' does not depend on any axioms
+'CollatzTeaming.two_pow_le_three_pow' does not depend on any axioms
+'CollatzTeaming.all_words' depends on axioms: [propext]
+'CollatzTeaming.badCount.eq_1' does not depend on any axioms
+'CollatzTeaming.badCount.eq_2' does not depend on any axioms
+'CollatzTeaming.badCount.eq_3' does not depend on any axioms
+'CollatzTeaming.badCount.eq_4' does not depend on any axioms
+'CollatzTeaming.badCount.eq_def' does not depend on any axioms
+'CollatzTeaming.badCount_zero_left' does not depend on any axioms
+'CollatzTeaming.badCount_zero_right' does not depend on any axioms
+'CollatzTeaming.block_tail' depends on axioms: [propext, Quot.sound]
+'CollatzTeaming.gen_bound' depends on axioms: [propext, Quot.sound]
+'CollatzTeaming.tail_ratio' depends on axioms: [propext, Quot.sound]
+'CollatzTeaming.three_five_lt_two_eight' does not depend on any axioms
+'CollatzTeaming.two_le_three_pow' depends on axioms: [propext, Quot.sound]
+'CollatzTeaming.Block.kpos' does not depend on any axioms
+'CollatzTeaming.Block.mk.inj' does not depend on any axioms
+'CollatzTeaming.Block.mk.injEq' depends on axioms: [propext]
+'CollatzTeaming.Block.mk.sizeOf_spec' does not depend on any axioms
+'CollatzTeaming.Block.odd' does not depend on any axioms
+'CollatzTeaming.blockCount_eq' does not depend on any axioms
+'CollatzTeaming.four_reaches_trivial_at_zero' does not depend on any axioms
+'CollatzTeaming.one_reaches_trivial_at_zero' does not depend on any axioms
+'CollatzTeaming.one_zero_path' does not depend on any axioms
+'CollatzTeaming.reaches_trivial_at_zero' does not depend on any axioms
+'CollatzTeaming.two_reaches_trivial_at_zero' does not depend on any axioms
+'CollatzTeaming.zero_fixed' does not depend on any axioms
+'CollatzTeaming.zero_orbit' does not depend on any axioms
+'CollatzTeaming.zero_path' does not depend on any axioms
+'CollatzTeaming.zero_path_four' does not depend on any axioms
+'CollatzTeaming.zero_path_one' does not depend on any axioms
+'CollatzTeaming.zero_path_two' does not depend on any axioms
+AUDIT PASS: 126 theorems in 18 modules depend only on propext, Classical.choice, Quot.sound (or on no axioms)

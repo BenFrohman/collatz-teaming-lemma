@@ -1,0 +1,26 @@
+checker: leanchecker source shipped with v4.34.0 (src/lean/LeanChecker.lean), prefix match -> exact match, run with lean --run
+  patch: 93c93
+  patch: <         if !fresh && target.isPrefixOf m || target == m then
+  patch: ---
+  patch: >         if !fresh && target == m || target == m then
+CollatzTeaming: OK (1 module replayed)
+CollatzTeaming.Axiom: OK (1 module replayed)
+CollatzTeaming.Basic: OK (1 module replayed)
+CollatzTeaming.BlockMap: OK (1 module replayed)
+CollatzTeaming.FirstDescent: OK (1 module replayed)
+CollatzTeaming.ForwardOrbit: OK (1 module replayed)
+CollatzTeaming.Inclusion: OK (1 module replayed)
+CollatzTeaming.Kernel: OK (1 module replayed)
+CollatzTeaming.M92: OK (1 module replayed)
+CollatzTeaming.MissingTerm: OK (1 module replayed)
+CollatzTeaming.Remaining: OK (1 module replayed)
+CollatzTeaming.Replacement: OK (1 module replayed)
+CollatzTeaming.ReverseTree: OK (1 module replayed)
+CollatzTeaming.Rhin: OK (1 module replayed)
+CollatzTeaming.Steiner: OK (1 module replayed)
+CollatzTeaming.Terras: OK (1 module replayed)
+CollatzTeaming.TerrasCount: OK (1 module replayed)
+CollatzTeaming.TerrasTail: OK (1 module replayed)
+CollatzTeaming.Types: OK (1 module replayed)
+CollatzTeaming.ZeroPath: OK (1 module replayed)
+RESULT: 20 of 20 modules replayed through the kernel, 0 failures
