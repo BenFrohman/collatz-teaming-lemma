@@ -1,6 +1,0 @@
-# Copyright (c) 2026 Benjamin Stanley Frohman. Licensed under Apache-2.0.
-name = "CollatzTeaming"
-defaultTargets = ["CollatzTeaming"]
-
-[[lean_lib]]
-name = "CollatzTeaming"
