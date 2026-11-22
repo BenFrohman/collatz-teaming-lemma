@@ -3,6 +3,7 @@ Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Benjamin Stanley Frohman
 -/
+
 /-
 Kernel certificates for the two data-backed scenes: five forward orbits,
 and the reverse-tree parent rule on the amber edge 5 → 16 → 8 → 4 → 2 → 1.
@@ -13,6 +14,12 @@ inhabitant of `RemainingLemma` or `CollatzConjecture`. Those stay open.
 
 import CollatzTeaming.Basic
 import CollatzTeaming.ReverseTree
+
+/-!
+# CollatzTeaming.Scenes
+
+Machine-checked Lean 4 module.
+-/
 
 namespace CollatzTeaming
 

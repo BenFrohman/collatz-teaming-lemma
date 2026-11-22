@@ -22,3 +22,9 @@ import CollatzTeaming.Kernel
 import CollatzTeaming.FirstDescent
 import CollatzTeaming.MissingTerm
 import CollatzTeaming.ZeroPath
+
+/-!
+# CollatzTeaming
+
+Machine-checked Lean 4 module.
+-/

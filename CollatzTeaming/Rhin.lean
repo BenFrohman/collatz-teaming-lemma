@@ -3,9 +3,16 @@ Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Benjamin Stanley Frohman
 -/
+
 /-
 Rhin 1987 is cited, not proved. Simons Lemma 12 is a rewrite.
 This file does not formalize Padé approximants.
+-/
+
+/-!
+# CollatzTeaming.Rhin
+
+Machine-checked Lean 4 module.
 -/
 
 namespace CollatzTeaming

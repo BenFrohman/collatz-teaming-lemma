@@ -3,9 +3,16 @@ Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Benjamin Stanley Frohman
 -/
+
 /-
 Block-map checks. Equality is decided after unfolding, so Lean 4.34
 can synthesize Decidable. Not the covering claim.
+-/
+
+/-!
+# CollatzTeaming.BlockMap
+
+Machine-checked Lean 4 module.
 -/
 
 namespace CollatzTeaming

@@ -1,11 +1,18 @@
 # Collatz teaming lemma — Lean skeleton
 
-[![lean.yml](https://github.com/BenFrohman/collatz-teaming-lemma/actions/workflows/lean.yml/badge.svg?branch=main)](https://github.com/BenFrohman/collatz-teaming-lemma/actions/workflows/lean.yml)
+[![Lean certificate](https://github.com/BenFrohman/collatz-teaming-lemma/actions/workflows/certify.yml/badge.svg?branch=main)](https://github.com/BenFrohman/collatz-teaming-lemma/actions/workflows/certify.yml)
+[![Kernel certificate](https://github.com/BenFrohman/collatz-teaming-lemma/actions/workflows/kernel-certificate.yml/badge.svg?branch=main)](https://github.com/BenFrohman/collatz-teaming-lemma/actions/workflows/kernel-certificate.yml)
+[![Lean 4](https://github.com/BenFrohman/collatz-teaming-lemma/actions/workflows/lean.yml/badge.svg?branch=main)](https://github.com/BenFrohman/collatz-teaming-lemma/actions/workflows/lean.yml)
+[![Lean header](https://github.com/BenFrohman/collatz-teaming-lemma/actions/workflows/lean-header.yml/badge.svg?branch=main)](https://github.com/BenFrohman/collatz-teaming-lemma/actions/workflows/lean-header.yml)
 
 <!-- ZENODO-PROVENANCE-HEADER -->
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23629486.svg)](https://doi.org/10.5281/zenodo.23629486)
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0006--7068--3718-brightgreen.svg)](https://orcid.org/0009-0006-7068-3718)
+
+## Kernel certificate
+
+[certificates/CERTIFICATE.md](certificates/CERTIFICATE.md): commit `26ee94e`, `leanprover/lean4:v4.34.0`. `lake build` passes; the sorry/axiom scan finds 0 hits; **126 theorems depend only on `propext`, `Classical.choice`, `Quot.sound`**; 20 of 20 modules replayed through the kernel, 0 failures ([CI run](https://github.com/BenFrohman/collatz-teaming-lemma/actions/runs/43939165706)).
 
 > **Author:** Benjamin Stanley Frohman ([ORCID: 0009-0006-7068-3718](https://orcid.org/0009-0006-7068-3718))  
 > **Origin Provenance:** `2026-09-20 15:47:26 CDT (Git Initial Commit)`  
@@ -28,6 +35,19 @@ This repository records the exact logical status of the remaining lemma on [The 
 > every infinite team eventually maps into the cycle `{1,4,2}`.
 
 That sentence is the Collatz conjecture on the positive integers. Lean records the equivalence and leaves the kernel open.
+
+
+## The kernel-checked equivalence
+
+The theorem the kernel accepts is the equivalence, not the covering claim.
+
+```lean
+theorem remaining_lemma_iff_collatz : RemainingLemma ↔ CollatzConjecture
+```
+
+`RemainingLemma` is `∀ n, 0 < n → ∃ k, iter k n = 1`. `CollatzConjecture` is the same claim stated as reaching the cycle `{1, 2, 4}`. The proof rewrites one definition into the other. On commit `e211540b`, the kernel-certificate job passed `collectAxioms` for 126 theorems and replayed the modules with `leanchecker`: [run 44968111937](https://github.com/BenFrohman/collatz-teaming-lemma/actions/runs/44968111937). `Lean certificate` and `Lean 4` also passed on that commit.
+
+That equivalence does not prove `RemainingLemma`. The theorem `remaining_lemma` still takes `RemainingLemma` as its hypothesis.
 
 ## What is certified
 
@@ -71,3 +91,8 @@ Any argument that assumes every infinite team already falls into `{1,4,2}` in or
 No solution preprint is deposited. A paper titled as a proof of Collatz would be false on the present kernel.
 
 Companions: [the-3n-plus-1-machine](https://github.com/BenFrohman/the-3n-plus-1-machine), [3n-plus-c-cycle-census](https://github.com/BenFrohman/3n-plus-c-cycle-census).
+
+## Zenodo archive
+
+- [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23629485.svg)](https://doi.org/10.5281/zenodo.23629485) Negative Expected Drift Does Not Imply a Unique Attractor at 1: Eliahou Windows, Rhin Linear Forms in Logarithms, and the Collatz Teaming Lemma in Lean 4 — all versions: [10.5281/zenodo.23629485](https://doi.org/10.5281/zenodo.23629485); latest version: [10.5281/zenodo.23629486](https://doi.org/10.5281/zenodo.23629486)
+- [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23867506.svg)](https://doi.org/10.5281/zenodo.23867506) Negative Expected Drift Does Not Imply a Unique Attractor at 1: Eliahou Windows, Rhin Linear Forms in Logarithms, and the Collatz Teaming Lemma in Lean 4 — all versions: [10.5281/zenodo.23867506](https://doi.org/10.5281/zenodo.23867506); latest version: [10.5281/zenodo.23932497](https://doi.org/10.5281/zenodo.23932497)

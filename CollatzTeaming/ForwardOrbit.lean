@@ -3,11 +3,18 @@ Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Benjamin Stanley Frohman
 -/
+
 /-
 Forward formulation. Equivalent to reverse-tree coverage. Not proved.
 -/
 
 import CollatzTeaming.ReverseTree
+
+/-!
+# CollatzTeaming.ForwardOrbit
+
+Machine-checked Lean 4 module.
+-/
 
 namespace CollatzTeaming
 

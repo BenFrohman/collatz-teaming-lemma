@@ -3,12 +3,19 @@ Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Benjamin Stanley Frohman
 -/
+
 /-
 A 92-cycle is a Prop. No inhabitant is supplied.
 -/
 
 import CollatzTeaming.Types
 import CollatzTeaming.BlockMap
+
+/-!
+# CollatzTeaming.M92
+
+Machine-checked Lean 4 module.
+-/
 
 namespace CollatzTeaming
 

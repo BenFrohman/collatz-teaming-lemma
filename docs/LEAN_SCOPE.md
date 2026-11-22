@@ -4,7 +4,7 @@ Author: Benjamin Stanley Frohman
 Email: frohmanbenjamin@gmail.com
 ORCID: 0009-0006-7068-3718
 GitHub: BenFrohman
-X: @Investor0x
+X: @Frohmanian
 Copyright (c) 2026 Benjamin Stanley Frohman. License: Apache-2.0.
 
 Toolchain on this repo: `leanprover/lean4:v4.34.0` (current stable as of 2026-09-14).

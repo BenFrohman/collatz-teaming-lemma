@@ -3,6 +3,7 @@ Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Benjamin Stanley Frohman
 -/
+
 /-
 Terras (1976) and Everett (1977): almost every positive integer has finite
 stopping time. The residue-count limit is proved in TerrasCount.lean.
@@ -12,6 +13,12 @@ this density theorem. This file does not prove RemainingLemma.
 
 import CollatzTeaming.ReverseTree
 import CollatzTeaming.TerrasCount
+
+/-!
+# CollatzTeaming.Terras
+
+Machine-checked Lean 4 module.
+-/
 
 namespace CollatzTeaming
 

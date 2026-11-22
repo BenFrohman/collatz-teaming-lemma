@@ -1,0 +1,43 @@
+import Lean
+import «CollatzTeaming»
+import «CollatzTeaming».«Axiom»
+import «CollatzTeaming».«Basic»
+import «CollatzTeaming».«BlockMap»
+import «CollatzTeaming».«FirstDescent»
+import «CollatzTeaming».«ForwardOrbit»
+import «CollatzTeaming».«Inclusion»
+import «CollatzTeaming».«Kernel»
+import «CollatzTeaming».«M92»
+import «CollatzTeaming».«MissingTerm»
+import «CollatzTeaming».«Remaining»
+import «CollatzTeaming».«Replacement»
+import «CollatzTeaming».«ReverseTree»
+import «CollatzTeaming».«Rhin»
+import «CollatzTeaming».«Steiner»
+import «CollatzTeaming».«Terras»
+import «CollatzTeaming».«TerrasCount»
+import «CollatzTeaming».«TerrasTail»
+import «CollatzTeaming».«Types»
+import «CollatzTeaming».«ZeroPath»
+
+open Lean Elab Command
+
+/-- Prints `#print axioms`-style lines for every theorem declared in the listed modules. -/
+elab "#kernel_certificate_audit" : command => do
+  let env ← getEnv
+  let mods : Array Name := #[`«CollatzTeaming», `«CollatzTeaming».«Axiom», `«CollatzTeaming».«Basic», `«CollatzTeaming».«BlockMap», `«CollatzTeaming».«FirstDescent», `«CollatzTeaming».«ForwardOrbit», `«CollatzTeaming».«Inclusion», `«CollatzTeaming».«Kernel», `«CollatzTeaming».«M92», `«CollatzTeaming».«MissingTerm», `«CollatzTeaming».«Remaining», `«CollatzTeaming».«Replacement», `«CollatzTeaming».«ReverseTree», `«CollatzTeaming».«Rhin», `«CollatzTeaming».«Steiner», `«CollatzTeaming».«Terras», `«CollatzTeaming».«TerrasCount», `«CollatzTeaming».«TerrasTail», `«CollatzTeaming».«Types», `«CollatzTeaming».«ZeroPath»]
+  for m in mods do
+    match env.getModuleIdx? m with
+    | none => IO.println s!"MODULE NOT LOADED {m}"
+    | some i =>
+      for n in (env.header.moduleData[i.toNat]!).constNames do
+        match env.find? n with
+        | some (.thmInfo _) =>
+          if !n.isInternal then
+            let ax ← collectAxioms n
+            let axs := ", ".intercalate (ax.toList.map toString)
+            if ax.isEmpty then IO.println s!"'{n}' does not depend on any axioms [module {m}]"
+            else IO.println s!"'{n}' depends on axioms: [{axs}] [module {m}]"
+        | _ => pure ()
+
+#kernel_certificate_audit

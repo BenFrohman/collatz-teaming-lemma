@@ -1,6 +1,18 @@
+/-
+Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Benjamin Stanley Frohman
+-/
+
 -- Standalone axiom audit for CollatzTeaming.Scenes.
 -- Built separately: its declarations share names with modules in the main root, so it cannot be imported alongside it.
 import CollatzTeaming.Scenes
+
+/-!
+# AxiomAudit_Scenes
+
+Machine-checked Lean 4 module.
+-/
 
 #print axioms CollatzTeaming.amber_edge
 #print axioms CollatzTeaming.five_is_odd_parent_of_sixteen

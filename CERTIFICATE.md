@@ -31,7 +31,20 @@ The note "Root imports every module under `CollatzTeaming/`" above was not accur
   root without renaming declarations. In `Scenes`, `decide` was replaced by `decide +kernel` (kernel-checked; statements unchanged)
   because elaborator `decide` hit the recursion limit.
 
-### Excluded
-- `CollatzTeaming.Derived` — does not compile. The orbit-table `decide` proofs hit the recursion limit, and the theorem
+## Derived added (2026-11-03)
+
+- `CollatzTeaming.Derived` is now built and audited standalone (CI: added to the standalone `lake build` line; audit file
+  `AxiomAudit_Derived.lean`, 19 theorems, all with standard axioms only, none with `sorry`). It redeclares names already in the root
+  or other standalone modules (`syracuse`, `syracuse_one`, `syracuse_five`, `syracuse_not_injective`, `orbit_two_pow_71`,
+  `odd_inverse_parent`, ...), so it cannot be imported into the root.
+- Seven orbit-table proofs changed from `decide` to `decide +kernel` (kernel-checked; statements unchanged; no `native_decide`).
+- The former theorem `derived_does_not_close_collatz : (iter 111 27 = 1) ≠ CollatzConjecture` was removed and kept as a comment.
+  Because `iter 111 27 = 1` is proved (`orbit_27_reaches`), that statement is equivalent to `¬ CollatzConjecture`: it is not a
+  formalization of "these finite checks do not prove Collatz" (a claim about provability), and it is unprovable unless Collatz is false.
+
+Totals: 107 theorems in the root audit; standalone audits ParentRule 4, Scenes 17, TerrasDensity 1, Derived 19 (148 declarations audited in all).
+
+### Superseded note
+Earlier text (kept for the record): - `CollatzTeaming.Derived` — does not compile. The orbit-table `decide` proofs hit the recursion limit, and the theorem
   `derived_does_not_close_collatz : (iter 111 27 = 1) ≠ CollatzConjecture` is not decidable (no `Decidable` instance), and proving it
   would amount to proving `¬ CollatzConjecture`. Not built, not certified.
