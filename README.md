@@ -1,7 +1,9 @@
 # Collatz teaming lemma — Lean skeleton
 
 [![Lean certificate](https://github.com/BenFrohman/collatz-teaming-lemma/actions/workflows/certify.yml/badge.svg?branch=main)](https://github.com/BenFrohman/collatz-teaming-lemma/actions/workflows/certify.yml)
+[![Kernel certificate](https://github.com/BenFrohman/collatz-teaming-lemma/actions/workflows/kernel-certificate.yml/badge.svg?branch=main)](https://github.com/BenFrohman/collatz-teaming-lemma/actions/workflows/kernel-certificate.yml)
 [![Lean 4](https://github.com/BenFrohman/collatz-teaming-lemma/actions/workflows/lean.yml/badge.svg?branch=main)](https://github.com/BenFrohman/collatz-teaming-lemma/actions/workflows/lean.yml)
+[![Lean header](https://github.com/BenFrohman/collatz-teaming-lemma/actions/workflows/lean-header.yml/badge.svg?branch=main)](https://github.com/BenFrohman/collatz-teaming-lemma/actions/workflows/lean-header.yml)
 
 <!-- ZENODO-PROVENANCE-HEADER -->
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23629486.svg)](https://doi.org/10.5281/zenodo.23629486)
@@ -33,6 +35,19 @@ This repository records the exact logical status of the remaining lemma on [The 
 > every infinite team eventually maps into the cycle `{1,4,2}`.
 
 That sentence is the Collatz conjecture on the positive integers. Lean records the equivalence and leaves the kernel open.
+
+
+## The kernel-checked equivalence
+
+The theorem the kernel accepts is the equivalence, not the covering claim.
+
+```lean
+theorem remaining_lemma_iff_collatz : RemainingLemma ↔ CollatzConjecture
+```
+
+`RemainingLemma` is `∀ n, 0 < n → ∃ k, iter k n = 1`. `CollatzConjecture` is the same claim stated as reaching the cycle `{1, 2, 4}`. The proof rewrites one definition into the other. On commit `e211540b`, the kernel-certificate job passed `collectAxioms` for 126 theorems and replayed the modules with `leanchecker`: [run 44968111937](https://github.com/BenFrohman/collatz-teaming-lemma/actions/runs/44968111937). `Lean certificate` and `Lean 4` also passed on that commit.
+
+That equivalence does not prove `RemainingLemma`. The theorem `remaining_lemma` still takes `RemainingLemma` as its hypothesis.
 
 ## What is certified
 
