@@ -12,7 +12,7 @@
 
 ## Kernel certificate
 
-[certificates/CERTIFICATE.md](certificates/CERTIFICATE.md): commit `134483cd`, `leanprover/lean4:v4.34.0`. `lake build` passes; the sorry/axiom scan finds 0 hits; **126 theorems depend only on `propext`, `Classical.choice`, `Quot.sound`**; 20 of 20 modules replayed through the kernel, 0 failures ([CI run](https://github.com/BenFrohman/collatz-teaming-lemma/actions/runs/44968452979)). `RemainingLemma` is not one of those theorems. The DOI below is the 20 September 2026 preprint. It does not contain this log, and it is not a proof of the Collatz conjecture.
+[certificates/CERTIFICATE.md](certificates/CERTIFICATE.md): commit `134483cd`, `leanprover/lean4:v4.34.0`. `lake build` passes; the sorry/axiom scan finds 0 hits; **126 theorems depend only on `propext`, `Classical.choice`, `Quot.sound`**; 20 of 20 modules replayed through the kernel, 0 failures ([CI run](https://github.com/BenFrohman/collatz-teaming-lemma/actions/runs/44968452979)). `RemainingLemma` is not one of those theorems. The same audit passed again on commit `230089be` ([CI run](https://github.com/BenFrohman/collatz-teaming-lemma/actions/runs/45083068264)). Version 1.1.0, [10.5281/zenodo.24451015](https://doi.org/10.5281/zenodo.24451015), keeps the September PDF and source zip and adds both logs. Record [10.5281/zenodo.23629486](https://doi.org/10.5281/zenodo.23629486) is version 1.0.0 and does not contain them. Neither record is a proof of the Collatz conjecture. The verification PDF in [p2q-jumps-lean](https://github.com/BenFrohman/p2q-jumps-lean) certifies four theorems in that other repository, at commit `821e35e`, Lean 4.26.0. It is not this certificate.
 
 > **Author:** Benjamin Stanley Frohman ([ORCID: 0009-0006-7068-3718](https://orcid.org/0009-0006-7068-3718))  
 > **Origin Provenance:** `2026-09-20 15:47:26 CDT (Git Initial Commit)`  
@@ -22,7 +22,7 @@
 <!-- /ZENODO-PROVENANCE-HEADER -->
 
 
-**Author:** Benjamin Stanley Frohman (``, GitHub `BenFrohman`)  
+**Author:** Benjamin Stanley Frohman (GitHub `BenFrohman`)  
 **Email:** frohmanbenjamin@gmail.com  
 **ORCID:** [0009-0006-7068-3718](https://orcid.org/0009-0006-7068-3718)  
 **Copyright:** © 2026 Benjamin Stanley Frohman. All rights reserved, except as granted by the license.  
@@ -88,11 +88,11 @@ Any argument that assumes every infinite team already falls into `{1,4,2}` in or
 
 ## Zenodo
 
-No solution preprint is deposited. A paper titled as a proof of Collatz would be false on the present kernel.
+No preprint claiming a proof of Collatz is deposited. Version 1.1.0 attaches the kernel logs and leaves RemainingLemma open. A paper titled as a proof of Collatz would be false on the present kernel.
 
 Companions: [the-3n-plus-1-machine](https://github.com/BenFrohman/the-3n-plus-1-machine), [3n-plus-c-cycle-census](https://github.com/BenFrohman/3n-plus-c-cycle-census).
 
 ## Zenodo archive
 
-- [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23629485.svg)](https://doi.org/10.5281/zenodo.23629485) Negative Expected Drift Does Not Imply a Unique Attractor at 1: Eliahou Windows, Rhin Linear Forms in Logarithms, and the Collatz Teaming Lemma in Lean 4 — all versions: [10.5281/zenodo.23629485](https://doi.org/10.5281/zenodo.23629485); latest version: [10.5281/zenodo.23629486](https://doi.org/10.5281/zenodo.23629486)
+- [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23629485.svg)](https://doi.org/10.5281/zenodo.23629485) Negative Expected Drift Does Not Imply a Unique Attractor at 1: Eliahou Windows, Rhin Linear Forms in Logarithms, and the Collatz Teaming Lemma in Lean 4 — all versions: [10.5281/zenodo.23629485](https://doi.org/10.5281/zenodo.23629485); version 1.0.0: [10.5281/zenodo.23629486](https://doi.org/10.5281/zenodo.23629486); version 1.1.0, with the 22 November kernel logs: [10.5281/zenodo.24451015](https://doi.org/10.5281/zenodo.24451015)
 - [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23867506.svg)](https://doi.org/10.5281/zenodo.23867506) Negative Expected Drift Does Not Imply a Unique Attractor at 1: Eliahou Windows, Rhin Linear Forms in Logarithms, and the Collatz Teaming Lemma in Lean 4 — all versions: [10.5281/zenodo.23867506](https://doi.org/10.5281/zenodo.23867506); latest version: [10.5281/zenodo.23932497](https://doi.org/10.5281/zenodo.23932497)

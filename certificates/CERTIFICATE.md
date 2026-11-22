@@ -21,7 +21,7 @@ This file records a machine check of the Lean 4 development in this repository. 
 
 `RemainingLemma` is `∀ n, 0 < n → ∃ k, iter k n = 1`. It is not one of the 126 theorems. `remaining_lemma_iff_collatz` proves that this sentence is equivalent to `CollatzConjecture`. The equivalence does not prove either side.
 
-[10.5281/zenodo.23629486](https://doi.org/10.5281/zenodo.23629486) is the 20 September 2026 preprint and the `v1.0.0` source zip. It does not contain this log. [10.5281/zenodo.23932497](https://doi.org/10.5281/zenodo.23932497) is a later copy of that preprint and says to cite the original. [10.5281/zenodo.24429710](https://doi.org/10.5281/zenodo.24429710) is a different note, the trajectory of 7. None of these records is a proof of the Collatz conjecture.
+[10.5281/zenodo.23629486](https://doi.org/10.5281/zenodo.23629486) is version 1.0.0, the 20 September 2026 preprint and source zip. It does not contain this log. [10.5281/zenodo.24451015](https://doi.org/10.5281/zenodo.24451015) is version 1.1.0 of the same concept, [10.5281/zenodo.23629485](https://doi.org/10.5281/zenodo.23629485). It keeps that PDF and zip and adds this log together with the recheck on commit `230089be` ([run 45083068264](https://github.com/BenFrohman/collatz-teaming-lemma/actions/runs/45083068264)). [10.5281/zenodo.23932497](https://doi.org/10.5281/zenodo.23932497) is a later copy of the September preprint and says to cite the original. [10.5281/zenodo.24429710](https://doi.org/10.5281/zenodo.24429710) is a different note, the trajectory of 7. The verification PDF in p2q-jumps-lean certifies four theorems in that other repository, at commit `821e35e`, Lean 4.26.0. None of these records is a proof of the Collatz conjecture.
 
 ## Rebuild
 
