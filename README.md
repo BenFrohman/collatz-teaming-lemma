@@ -12,7 +12,7 @@
 
 ## Kernel certificate
 
-[certificates/CERTIFICATE.md](certificates/CERTIFICATE.md): commit `26ee94e`, `leanprover/lean4:v4.34.0`. `lake build` passes; the sorry/axiom scan finds 0 hits; **126 theorems depend only on `propext`, `Classical.choice`, `Quot.sound`**; 20 of 20 modules replayed through the kernel, 0 failures ([CI run](https://github.com/BenFrohman/collatz-teaming-lemma/actions/runs/43939165706)).
+[certificates/CERTIFICATE.md](certificates/CERTIFICATE.md): commit `134483cd`, `leanprover/lean4:v4.34.0`. `lake build` passes; the sorry/axiom scan finds 0 hits; **126 theorems depend only on `propext`, `Classical.choice`, `Quot.sound`**; 20 of 20 modules replayed through the kernel, 0 failures ([CI run](https://github.com/BenFrohman/collatz-teaming-lemma/actions/runs/44968452979)). `RemainingLemma` is not one of those theorems. The DOI below is the 20 September 2026 preprint. It does not contain this log, and it is not a proof of the Collatz conjecture.
 
 > **Author:** Benjamin Stanley Frohman ([ORCID: 0009-0006-7068-3718](https://orcid.org/0009-0006-7068-3718))  
 > **Origin Provenance:** `2026-09-20 15:47:26 CDT (Git Initial Commit)`  
@@ -55,7 +55,7 @@ That equivalence does not prove `RemainingLemma`. The theorem `remaining_lemma` 
 - The trivial cycle `C0 = (1 → 4 → 2 → 1)`, bound max = 4 on that orbit only.
 - Predicates D (dichotomy) and R (reduction to the two Δs).
 - The definition of inverse-residue teams.
-- `RemainingLemma ↔ CollatzConjecture` by definition.
+- `RemainingLemma ↔ CollatzConjecture`, proved as `remaining_lemma_iff_collatz`.
 - Proved by `decide +kernel`: the scene certificates in `CollatzTeaming/Kernel.lean`: inverse parent rule, the amber edge, five finite orbits, and the halving family. These do not inhabit `RemainingLemma`.
 
 ## What is not certified
