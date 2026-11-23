@@ -6,6 +6,20 @@ License: Apache License 2.0 (see LICENSE)
 
 This certificate records a local build. It does not certify a proof of the Collatz conjecture.
 
+## Kernel certificate, 22 November 2026
+
+This is the current machine check of the built library. It does not prove the Collatz conjecture.
+
+- Toolchain: `leanprover/lean4:v4.34.0` (Lean commit `293d5d0c0c3f3dded4688b3ccd6a33939ac5102b`), Lake 5.0.0-src+293d5d0, no Mathlib
+- Run [44968452979](https://github.com/BenFrohman/collatz-teaming-lemma/actions/runs/44968452979), commit `134483cd`, 2026-11-22T00:49:16Z
+- Recheck [45083068264](https://github.com/BenFrohman/collatz-teaming-lemma/actions/runs/45083068264), commit `230089be`, 2026-11-22T23:24:32Z, same audit
+- `lake build`: 22 jobs. Sorry scan: 0 hits in 30 Lean files. `#print axioms`: 126 theorems in 18 modules, only `propext`, `Classical.choice`, `Quot.sound`, or none. No `sorryAx`. Leanchecker: 20 of 20 modules, 0 failures
+- `RemainingLemma` is not one of those 126 theorems
+- Paper PDF with this certificate appended: [10.5281/zenodo.24451077](https://doi.org/10.5281/zenodo.24451077)
+
+The 4 October and 3 November notes below counted declarations by a different listing (107 in the root audit, 148 with the standalone modules). They are history. They are not the 22 November log.
+
+
 - Toolchain: Lean 4.34.0, commit 293d5d0c0c3f3dded4688b3ccd6a33939ac5102b, Release
 - Command: `lake build`
 - Date: 2026-10-04
