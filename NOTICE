@@ -1,15 +1,25 @@
-collatz-teaming-lemma — Negative Expected Drift Does Not Imply a Unique Attractor at 1: Eliahou Windows, Rhin Linear Forms in Logarithms, and the Collatz Teaming Lemma in Lean 4
+collatz-teaming-lemma
 Copyright 2026 Benjamin Stanley Frohman
 ORCID: https://orcid.org/0009-0006-7068-3718
 GitHub: https://github.com/BenFrohman/collatz-teaming-lemma
-Zenodo DOI: https://doi.org/10.5281/zenodo.23629486
-Origin Provenance: 2026-09-20 15:47:26 CDT (Git Initial Commit)
 
-This product includes software, formal Lean 4 proofs, and mathematical manuscripts developed by
-Benjamin Stanley Frohman (frohmanbenjamin@gmail.com).
+Please cite this work as Benjamin Stanley Frohman, ORCID 0009-0006-7068-3718,
+together with the corresponding GitHub commit or Zenodo record.
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this work except in compliance with the License.
-You may obtain a copy of the License at
+The Lean 4 development (code and formal proofs) is licensed under the
+Apache License, Version 2.0 (see LICENSE).
 
-    http://www.apache.org/licenses/LICENSE-2.0
+The papers in this repository, including
+Frohman_Collatz_Inverse_Team_Reduction_2026.tex and
+Frohman_Collatz_Teaming_Lemma_and_Eliahou_Windows_2026.tex,
+are licensed under Creative Commons Attribution 4.0 International
+(CC BY 4.0; see LICENSE-CC-BY-4.0).
+
+This repository does not contain a proof of the Collatz conjecture.
+RemainingLemma is an open proposition, kernel-checked equivalent to
+CollatzConjecture by remaining_lemma_iff_collatz.
+
+Origin provenance of the repository: 2026-09-20 15:47:26 CDT
+(Git initial commit). The Eliahou-windows preprint v1.0.0 is
+https://doi.org/10.5281/zenodo.23629486; do not cite that record as
+the inverse-team certificate.

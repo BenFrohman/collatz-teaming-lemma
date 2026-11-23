@@ -30,24 +30,57 @@ jobs:
             echo "date (UTC): $(date -u +%Y-%m-%dT%H:%M:%SZ)"
             echo "run: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
           } | tee cert-out/environment.txt
+          cp lake-manifest.json cert-out/lake-manifest.json
+          cp lean-toolchain cert-out/lean-toolchain
+          sha256sum lake-manifest.json | tee cert-out/lake-manifest.json.sha256
       - name: Get Mathlib cache (never rebuilds Mathlib from source)
         run: |
           if grep -q '"name": *"mathlib"' lake-manifest.json 2>/dev/null; then lake exe cache get; else echo "no mathlib dependency"; fi
       - name: lake build
         run: |
           set -o pipefail
+          # Root library (CollatzTeaming and its imports).
           lake build 2>&1 | tee cert-out/build.log
+          # These four modules live under CollatzTeaming/ but are not imported by
+          # the root: they reuse theorem names already declared in Kernel and
+          # Terras. They are still part of the development and must be built,
+          # sorry-scanned, axiom-audited, and kernel-checked.
+          lake build CollatzTeaming.ParentRule CollatzTeaming.Scenes CollatzTeaming.TerrasDensity CollatzTeaming.Derived 2>&1 | tee cert-out/build-extra.log
+          cat cert-out/build-extra.log >> cert-out/build.log
       - name: sorry / admit / native_decide / axiom scan
         run: |
           set -o pipefail
-          python3 certificates/tools/sorry_scan.py 2>&1 | tee cert-out/sorry-scan.txt
+          python3 certificates/tools/sorry_scan.py cert-out/build.log 2>&1 | tee cert-out/sorry-scan.txt
       - name: '#print axioms (collectAxioms) for every theorem in the built modules'
         run: |
           set -o pipefail
-          python3 certificates/tools/gen_audit.py cert-out/KernelCertificateAudit.lean cert-out/modules.txt
-          lake env lean cert-out/KernelCertificateAudit.lean > cert-out/axioms.raw.txt 2> cert-out/axioms.stderr.txt || { cat cert-out/axioms.raw.txt cert-out/axioms.stderr.txt; exit 1; }
+          python3 certificates/tools/gen_audit.py cert-out/audits cert-out/modules.txt
+          : > cert-out/axioms.raw.txt
+          : > cert-out/axioms.stderr.txt
+          while read -r m; do
+            [ -n "$m" ] || continue
+            echo "=== audit $m ===" >> cert-out/axioms.stderr.txt
+            lake env lean "cert-out/audits/$m.lean" >> cert-out/axioms.raw.txt 2>> cert-out/axioms.stderr.txt || { cat cert-out/axioms.raw.txt cert-out/axioms.stderr.txt; exit 1; }
+          done < cert-out/modules.txt
           python3 certificates/tools/check_audit.py cert-out/axioms.raw.txt > cert-out/axioms.txt || { tail -50 cert-out/axioms.txt; exit 1; }
           tail -1 cert-out/axioms.txt
+      - name: '#print axioms for the inverse-team equivalence theorems'
+        run: |
+          set -o pipefail
+          set -o pipefail
+          lake env lean AxiomAudit_Equivalence.lean 2> cert-out/equivalence-axioms.stderr.txt | awk '/^[ \t]/{sub(/^[ \t]+/," ");printf "%s",$0;next} NR>1{print ""} {printf "%s",$0} END{print ""}' | tee cert-out/equivalence-axioms.txt
+          if grep -qiE 'error|MODULE NOT LOADED' cert-out/equivalence-axioms.txt cert-out/equivalence-axioms.stderr.txt; then
+            cat cert-out/equivalence-axioms.txt cert-out/equivalence-axioms.stderr.txt
+            exit 1
+          fi
+          OK='depends on axioms: \[(propext|Classical\.choice|Quot\.sound)(, (propext|Classical\.choice|Quot\.sound))*\]$|does not depend on any axioms$'
+          n=$(grep -c '^#print axioms' AxiomAudit_Equivalence.lean)
+          m=$(grep -E "^'" cert-out/equivalence-axioms.txt | grep -cE "$OK" || true)
+          echo "equivalence theorems: audited $n declarations, $m with standard axioms only"
+          if [ "$n" -ne "$m" ]; then
+            echo "Non-standard or missing axiom output:"; cat cert-out/equivalence-axioms.txt
+            exit 1
+          fi
       - name: External kernel re-check of every module (leanchecker / lean4checker, one module per run)
         # The stock checker treats its argument as a module-name prefix and replays every matching
         # module in parallel, which runs out of memory on a root module that imports the whole

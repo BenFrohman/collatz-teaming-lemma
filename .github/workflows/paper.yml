@@ -1,0 +1,31 @@
+name: Paper
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  paper:
+    name: Rebuild inverse-team paper PDF
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Rebuild Frohman_Collatz_Inverse_Team_Reduction_2026.pdf
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: Frohman_Collatz_Inverse_Team_Reduction_2026.tex
+
+      - name: Upload rebuilt PDF
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: inverse-team-paper-pdf
+          path: Frohman_Collatz_Inverse_Team_Reduction_2026.pdf
+          if-no-files-found: error

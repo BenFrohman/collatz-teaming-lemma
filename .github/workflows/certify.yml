@@ -17,8 +17,11 @@ jobs:
 
       - name: Build
         run: |
-          lake build
-          lake build CollatzTeaming.ParentRule CollatzTeaming.Scenes CollatzTeaming.TerrasDensity CollatzTeaming.Derived
+          set -o pipefail
+          mkdir -p cert-out
+          lake build 2>&1 | tee cert-out/build.log
+          lake build CollatzTeaming.ParentRule CollatzTeaming.Scenes CollatzTeaming.TerrasDensity CollatzTeaming.Derived 2>&1 | tee cert-out/build-extra.log
+          cat cert-out/build-extra.log >> cert-out/build.log
       - name: Axiom audit
         run: |
           set -o pipefail
@@ -36,4 +39,6 @@ jobs:
               echo "Non-standard axiom output:"; cat "$a"; exit 1; fi
           done
       - name: No sorry / no axiom declarations
-        run: python3 scripts/check_no_sorry.py
+        run: |
+          python3 scripts/check_no_sorry.py
+          python3 certificates/tools/sorry_scan.py cert-out/build.log
