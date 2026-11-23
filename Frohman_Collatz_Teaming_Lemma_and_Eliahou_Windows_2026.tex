@@ -33,6 +33,14 @@ We formalize in Lean 4 (\texttt{CollatzTeaming}, 23 modules) the inverse-residue
 
 \section*{License and Copyright}
 Copyright \copyright\ 2026 Benjamin Stanley Frohman. All rights reserved. Licensed under the Apache License, Version 2.0 (\url{http://www.apache.org/licenses/LICENSE-2.0}).
+
+\section{22 November 2026 kernel certificate}
+The checks in the appendix below are an earlier listing, at commit \texttt{a5152a93}, continuous-integration runs 41728145753 and 41728145773, with 107 root declarations. They are not the 22 November 2026 kernel certificate.
+
+On 22 November 2026 the built library was checked again. Run \url{https://github.com/BenFrohman/collatz-teaming-lemma/actions/runs/44968452979} (commit \texttt{134483cd3beacf2b817528a611802b60a8e135a5}, 2026-11-22T00:49:16Z) and run \url{https://github.com/BenFrohman/collatz-teaming-lemma/actions/runs/45083068264} (commit \texttt{230089be84f461010f6a7dd611ffbd969879a5bd}, 2026-11-22T23:24:32Z) both report: Lean \texttt{v4.34.0}, no Mathlib, \texttt{lake build} of 22 jobs, sorry scan 0 hits, 126 theorems in 18 modules depending only on \texttt{propext}, \texttt{Classical.choice}, and \texttt{Quot.sound}, and leanchecker replay of 20 of 20 modules with 0 failures. The axiom dump contains no \texttt{sorryAx}. \texttt{RemainingLemma} is not one of those 126 theorems. \texttt{remaining\_lemma\_iff\_collatz} is the equivalence and does not prove either side.
+
+The paper file that contains those pages is version 1.2.0, \url{https://doi.org/10.5281/zenodo.24451077}. Record \url{https://doi.org/10.5281/zenodo.23629486} is version 1.0.0 and does not. The \texttt{p2q-jumps-lean} PDF (commit \texttt{821e35e}, Lean 4.26.0, four theorems) is not this certificate. The sorted 126-line axiom table is \texttt{certificates/axioms.txt} and pages 7--9 of that version 1.2.0 PDF.
+
 \appendix
 \section{Verification certificate}\label{app:verification-certificate}
 
