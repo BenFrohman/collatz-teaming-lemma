@@ -7,8 +7,9 @@ A Kernel-Checked Equivalence in Lean 4\\
 (Not a Proof of the Conjecture)}
 
 \author{Benjamin Stanley Frohman\\
-Independent Researcher\\
-ORCID: \href{https://orcid.org/0009-0006-7068-3718}{0009-0006-7068-3718}}
+Independent Researcher, Texas, United States\\
+ORCID: \href{https://orcid.org/0009-0006-7068-3718}{0009-0006-7068-3718}\\
+\texttt{frohmanbenjamin@gmail.com}}
 
 \date{23 November 2026}
 
@@ -16,54 +17,69 @@ ORCID: \href{https://orcid.org/0009-0006-7068-3718}{0009-0006-7068-3718}}
 \maketitle
 
 \begin{abstract}
-This note records a complete, kernel-checked formalization of the inverse-residue team structure for the $3n+1$ map, together with a definitional equivalence between a single isolated proposition (RemainingLemma) and the Collatz conjecture. The scaffolding is sorry-free and uses only standard Mathlib axioms. RemainingLemma is left open. The paper does not claim a proof of the Collatz conjecture. It ties the present reduction to the author's earlier deposits on the same map, establishing chronological priority for the inverse-team formulation and the explicit isolation of the covering claim.
+This note records a kernel-checked formalization of the inverse-residue team structure for the $3n+1$ map, together with a definitional equivalence between a single isolated proposition (\texttt{RemainingLemma}) and the formalization of the Collatz conjecture used in this development (\texttt{CollatzConjecture}). The scaffolding is sorry-free and uses only the standard Lean axioms (\texttt{propext}, \texttt{Classical.choice}, \texttt{Quot.sound}); the development does not depend on Mathlib. \texttt{RemainingLemma} is left open. The paper does not claim a proof of the Collatz conjecture. It ties the present reduction to the author's earlier deposits on the same map, establishing chronological priority for the inverse-team formulation and the explicit isolation of the covering claim.
 \end{abstract}
+
+\noindent
+Copyright \copyright\ 2026 Benjamin Stanley Frohman.
+This paper is licensed under CC BY 4.0 (see \texttt{LICENSE-CC-BY-4.0} in the accompanying repository).
+The Lean 4 development is licensed under Apache-2.0 (see \texttt{LICENSE}).
 
 \section{Prior deposits (priority)}
 
-The present reduction continues a sequence of public deposits by the same author, all under Apache-2.0, ORCID 0009-0006-7068-3718:
+The present reduction continues a sequence of public deposits by the same author, ORCID 0009-0006-7068-3718. Those earlier deposits were released under Apache-2.0. This paper is released under CC BY 4.0; the Lean code remains Apache-2.0.
 
 \begin{itemize}
 \item \textbf{The 3n+1 Machine} (first fixed 18 September 2026). Interactive visual explorer of orbits, the reverse tree, and Terras density. Zenodo: \href{https://doi.org/10.5281/zenodo.23653011}{10.5281/zenodo.23653011}. GitHub: \url{https://github.com/BenFrohman/the-3n-plus-1-machine}.
 \item \textbf{Prefix census of $3n+c$ and $5n+1$ cycles} (23 September 2026). Hashed census of primitive cycles, sign-conjugacy $C_{-c}(n)=-C_c(-n)$, and exact verification of the delay-record start $989\,345\,275\,647$. Zenodo: \href{https://doi.org/10.5281/zenodo.23629488}{10.5281/zenodo.23629488}.
 \item \textbf{Collatz teaming lemma (concept)} (origin 20 September 2026). Lean 4 skeleton isolating the remaining lemma. Zenodo concept: \href{https://doi.org/10.5281/zenodo.23629485}{10.5281/zenodo.23629485}; current version 1.2.0: \href{https://doi.org/10.5281/zenodo.24451077}{10.5281/zenodo.24451077}.
 \item \textbf{Covering claim} (4 October 2026). Explicit open statement $\forall n>0,\ \exists k,\ \operatorname{iter}^k(n)=1$. Zenodo: \href{https://doi.org/10.5281/zenodo.23653007}{10.5281/zenodo.23653007}.
-\item \textbf{Terras density} (4 October 2026). Finite stopping time has density one; first descent is not arrival at 1. Zenodo: \href{https://doi.org/10.5281/zenodo.23629484}{10.5281/zenodo.23629484}.
+\item \textbf{Terras density} (4 October 2026). A deposit stating that finite stopping time has density one, and that first descent is not arrival at 1. Zenodo: \href{https://doi.org/10.5281/zenodo.23629484}{10.5281/zenodo.23629484}. The present repository records \texttt{TerrasDensity} as a stated proposition only; it does not prove that claim.
 \end{itemize}
 
 These deposits fix the inverse-tree language, the parent rules ($2m$ always; odd preimage precisely when $m\equiv 4\pmod 6$), and the isolation of the covering claim before the present equivalence was kernel-checked.
 
 \section{The reduction}
 
-Let $T:\mathbb{N}\to\mathbb{N}$ be the Collatz map:
+Let $T:\mathbb{N}\to\mathbb{N}$ be the Collatz map, formalized in \texttt{CollatzTeaming.Basic} as \texttt{T}:
 \[
 T(n)=\begin{cases}
 n/2 & n\text{ even},\\
 3n+1 & n\text{ odd}.
 \end{cases}
 \]
-Write $\operatorname{iter}^k$ for the $k$-fold iterate. The Collatz conjecture is the statement
+Write $\operatorname{iter}^k$ for the $k$-fold iterate (\texttt{iter}). The Lean definitions, taken verbatim, are:
+\begin{align*}
+\texttt{InTrivialCycle}\,n
+&\ :\equiv\
+n=1\ \lor\ n=2\ \lor\ n=4,\\
+\texttt{ReachesTrivialCycle}\,n
+&\ :\equiv\
+\exists k,\ \texttt{InTrivialCycle}\,(\texttt{iter}\,k\,n),\\
+\texttt{CollatzConjecture}
+&\ :\equiv\
+\forall n,\ 0<n\ \to\ \texttt{ReachesTrivialCycle}\,n,\\
+\texttt{InReverseTree}\,n
+&\ :\equiv\
+\exists k,\ \texttt{iter}\,k\,n=1,\\
+\texttt{RemainingLemma}
+&\ :\equiv\
+\forall n,\ 0<n\ \to\ \texttt{InReverseTree}\,n.
+\end{align*}
+Thus \texttt{CollatzConjecture} is the claim that every positive orbit reaches the cycle $\{1,2,4\}$, and \texttt{RemainingLemma} is the claim that every positive orbit reaches $1$. These are not the same predicate. The kernel-checked theorem
 \[
-\text{CollatzConjecture}\;:\;\forall n>0,\ \exists k,\ \operatorname{iter}^k(n)=1.
+\texttt{remaining\_lemma\_iff\_collatz}\ :\ \texttt{RemainingLemma}\ \leftrightarrow\ \texttt{CollatzConjecture}
 \]
-(The equivalent formulation that every orbit reaches the cycle $\{1,4,2\}$ is interchangeable by a short calculation already checked by the kernel.)
+identifies them. One direction is immediate: if $\texttt{iter}\,k\,n=1$, then $n$ has reached the trivial cycle. The converse is \texttt{reaches\_one\_of\_trivial}, which uses the already-checked identities $T(1)=4$, $T(4)=2$ and $T(2)=1$ to extend a visit to $2$ or $4$ by one or two further steps to $1$. Neither direction uses a covering argument, and neither inhabits \texttt{RemainingLemma}.
 
 The inverse parent rules are total on the relevant residues:
 \begin{itemize}
-\item Even parent: $m\leftarrow 2m$ always.
-\item Odd parent: $m\leftarrow (m-1)/3$ precisely when $m\equiv 4\pmod 6$ and the result is a positive odd integer.
+\item Even parent: $m\leftarrow 2m$ always (\texttt{doubling\_parent}, \texttt{even\_double}).
+\item Odd parent: $m\leftarrow (m-1)/3$ precisely when $m\equiv 4\pmod 6$ and the result is a positive odd integer (\texttt{oddPredecessor\_of\_mod\_six}, \texttt{C\_odd\_pred}).
 \end{itemize}
-These rules generate the reverse tree of 1. Finite certificates (decide + kernel) confirm the first odd edge $5\to 16$, the amber path $5\to 16\to 8\to 4\to 2\to 1$, and selected forward orbits (including the classical hailstone of 27).
+These rules generate the reverse tree of 1. Finite certificates (\texttt{decide} in the kernel, not \texttt{native\_decide}) confirm the first odd edge $5\to 16$, the amber path $5\to 16\to 8\to 4\to 2\to 1$, and selected forward orbits (including the classical hailstone of 27).
 
-The single open proposition is
-\[
-\text{RemainingLemma}\;:\;\forall n>0,\ \exists k,\ \operatorname{iter}^k(n)=1.
-\]
-The Lean kernel accepts the definitional equivalence
-\[
-\text{RemainingLemma}\;\leftrightarrow\;\text{CollatzConjecture}.
-\]
-The proof of the equivalence uses only rewriting and the already-certified parent rules. No \texttt{sorry} appears in the equivalence or the scaffolding. An axiom audit reports only the standard Mathlib axioms (\texttt{propext}, \texttt{Classical.choice}, \texttt{Quot.sound}).
+No \texttt{sorry}, \texttt{admit} or \texttt{native\_decide} appears in the equivalence or the scaffolding. An official axiom audit of \texttt{remaining\_lemma\_iff\_collatz} and of the rest of the scaffolding reports only the standard Lean axioms (\texttt{propext}, \texttt{Classical.choice}, \texttt{Quot.sound}), or no axioms.
 
 \section{What is proved and what is not}
 
@@ -71,16 +87,20 @@ Proved (kernel-checked, sorry-free):
 \begin{itemize}
 \item the parent rules and the reverse-tree construction,
 \item finite orbit certificates,
-\item the equivalence RemainingLemma $\leftrightarrow$ CollatzConjecture.
+\item \texttt{remaining\_lemma\_iff\_collatz}\,:\,\texttt{RemainingLemma}\ $\leftrightarrow$ \texttt{CollatzConjecture},
+\item \texttt{reaches\_one\_of\_trivial}, and the definitional unfolding \texttt{covering\_claim\_def}.
 \end{itemize}
 
 Not proved:
 \begin{itemize}
-\item RemainingLemma itself,
-\item the Collatz conjecture.
+\item \texttt{RemainingLemma} itself,
+\item \texttt{CollatzConjecture},
+\item \texttt{TerrasDensity}, which is recorded as a stated density claim only. Density zero of the non-descending set is not the covering claim.
 \end{itemize}
 
-The reduction therefore supplies a complete external certificate of the logical status of the covering claim. Any future proof of RemainingLemma would, by the kernel-checked equivalence, constitute a proof of the Collatz conjecture. The converse is equally true. The present work does not supply that proof.
+Theorems that take $h:\texttt{RemainingLemma}$ as a hypothesis (\texttt{remaining\_lemma}, \texttt{remaining\_lemma\_from\_assumption}, \texttt{remaining\_lemma\_forward}, \texttt{remaining\_lemma\_reverse\_tree}, \texttt{covering\_from\_assumption}) are conditional restatements, not a proof of the covering claim.
+
+The reduction therefore supplies a complete external certificate of the logical status of the covering claim. Any future proof of \texttt{RemainingLemma} would, by the kernel-checked equivalence, constitute a proof of \texttt{CollatzConjecture}. The converse is equally true. The present work does not supply that proof.
 
 \section{Repository and certificate}
 
@@ -88,14 +108,19 @@ The full Lean development is public:
 \begin{center}
 \url{https://github.com/BenFrohman/collatz-teaming-lemma}
 \end{center}
-Commit \texttt{39bbc974f7065bc3eab42818e3e0258c8cb1776e} (and later) contains the updated STATUS.md with the explicit sentence:
+The file \texttt{STATUS.md} in that repository records the same isolation:
 \begin{quote}
 RemainingLemma is definitionally equivalent to the Collatz conjecture and is not proved.
 \end{quote}
-\texttt{lake build} succeeds. The only open statement is RemainingLemma.
+The official certificate is the \texttt{kernel-certificate} artifact of the repository's own GitHub Actions run at the commit that produced this PDF: the pinned toolchain, a CI-computed SHA-256 of \texttt{lake-manifest.json}, the full \texttt{lake build} log, a sorry scan of every tracked \texttt{.lean} file and of that log (with no exclusion list), \texttt{\#print axioms} / \texttt{collectAxioms} on every built theorem including the equivalence theorems, and an external kernel replay (\texttt{leanchecker}) of every built module. This paper is not a handwritten certificate.
 
 \section{Honest scope}
 
 This paper is a reduction and a priority record. It is not a resolution of the Collatz conjecture. The conjecture remains open. The value of the reduction is that it isolates the exact remaining statement, certifies that the isolation is free of circularity and of non-standard axioms, and anchors that isolation to a dated public repository and to the author's earlier deposits on the same map.
+
+\section*{License}
+Text CC BY 4.0; Lean code Apache-2.0.
+Copyright \copyright\ 2026 Benjamin Stanley Frohman, ORCID 0009-0006-7068-3718.
+Please cite the author, the ORCID, and the corresponding GitHub commit or Zenodo record.
 
 \end{document}
