@@ -36,16 +36,29 @@ jobs:
       - name: lake build
         run: |
           set -o pipefail
+          # Root library (CollatzTeaming and its imports).
           lake build 2>&1 | tee cert-out/build.log
+          # These four modules live under CollatzTeaming/ but are not imported by
+          # the root: they reuse theorem names already declared in Kernel and
+          # Terras. They are still part of the development and must be built,
+          # sorry-scanned, axiom-audited, and kernel-checked.
+          lake build CollatzTeaming.ParentRule CollatzTeaming.Scenes CollatzTeaming.TerrasDensity CollatzTeaming.Derived 2>&1 | tee cert-out/build-extra.log
+          cat cert-out/build-extra.log >> cert-out/build.log
       - name: sorry / admit / native_decide / axiom scan
         run: |
           set -o pipefail
-          python3 certificates/tools/sorry_scan.py 2>&1 | tee cert-out/sorry-scan.txt
+          python3 certificates/tools/sorry_scan.py cert-out/build.log 2>&1 | tee cert-out/sorry-scan.txt
       - name: '#print axioms (collectAxioms) for every theorem in the built modules'
         run: |
           set -o pipefail
-          python3 certificates/tools/gen_audit.py cert-out/KernelCertificateAudit.lean cert-out/modules.txt
-          lake env lean cert-out/KernelCertificateAudit.lean > cert-out/axioms.raw.txt 2> cert-out/axioms.stderr.txt || { cat cert-out/axioms.raw.txt cert-out/axioms.stderr.txt; exit 1; }
+          python3 certificates/tools/gen_audit.py cert-out/audits cert-out/modules.txt
+          : > cert-out/axioms.raw.txt
+          : > cert-out/axioms.stderr.txt
+          while read -r m; do
+            [ -n "$m" ] || continue
+            echo "=== audit $m ===" >> cert-out/axioms.stderr.txt
+            lake env lean "cert-out/audits/$m.lean" >> cert-out/axioms.raw.txt 2>> cert-out/axioms.stderr.txt || { cat cert-out/axioms.raw.txt cert-out/axioms.stderr.txt; exit 1; }
+          done < cert-out/modules.txt
           python3 certificates/tools/check_audit.py cert-out/axioms.raw.txt > cert-out/axioms.txt || { tail -50 cert-out/axioms.txt; exit 1; }
           tail -1 cert-out/axioms.txt
       - name: External kernel re-check of every module (leanchecker / lean4checker, one module per run)

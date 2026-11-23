@@ -12,3 +12,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: leanprover/lean-action@v1
+      - name: Build modules not imported by the root
+        run: |
+          set -o pipefail
+          export PATH="$HOME/.elan/bin:$PATH"
+          lake build CollatzTeaming.ParentRule CollatzTeaming.Scenes CollatzTeaming.TerrasDensity CollatzTeaming.Derived 2>&1 | tee extra-build.log
+          python3 certificates/tools/sorry_scan.py extra-build.log
